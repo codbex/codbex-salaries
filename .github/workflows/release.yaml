@@ -17,7 +17,7 @@ jobs:
       application-name: codbex-salaries
       release-version: ${{ inputs.release-version }}
       release-content: |
-        ## codbex-salaries - ${{ github.event.inputs.release-version }}
+        ## codbex-salaries - ${{ inputs.release-version }}
   
         Salaries Management Application
   
