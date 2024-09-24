@@ -34,7 +34,7 @@
 					<tr fd-table-row>
 						<th fd-table-header-cell>Name</th>
 						<th fd-table-header-cell>Quantity</th>
-						<th fd-table-header-cell>SalaryItemDirection</th>
+						<th fd-table-header-cell>Direction</th>
 						<th fd-table-header-cell>Amount</th>
 						<th fd-table-header-cell></th>
 					</tr>
@@ -48,7 +48,7 @@
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Name}}</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Quantity}}</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">
-							{{optionsSalaryItemDirectionValue(next.SalaryItemDirection)}}
+							{{optionsDirectionValue(next.Direction)}}
 						</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Amount}}</td>
 						<td fd-table-cell fit-content="true">

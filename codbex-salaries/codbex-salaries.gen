@@ -1037,13 +1037,13 @@
           "inputRule": ""
         },
         {
-          "dataName": "SALARYITEM_SALARYITEMDIRECTION",
+          "dataName": "SALARYITEM_DIRECTION",
           "dataNullable": true,
           "dataType": "INTEGER",
           "isRequiredProperty": true,
-          "name": "SalaryItemDirection",
-          "widgetDropDownKey": "Id",
-          "widgetDropDownValue": "Name",
+          "name": "Direction",
+          "widgetDropDownKey": "Direction",
+          "widgetDropDownValue": "Direction",
           "widgetIsMajor": true,
           "widgetLength": "20",
           "widgetSize": "",
@@ -1057,7 +1057,7 @@
           "dataPrimaryKey": false,
           "dataUnique": false,
           "isCalculatedProperty": false,
-          "widgetLabel": "SalaryItemDirection",
+          "widgetLabel": "Direction",
           "widgetDropdownUrl": "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
@@ -1119,42 +1119,21 @@
     {
       "properties": [
         {
-          "dataAutoIncrement": true,
-          "dataName": "SALARYITEMDIRECTION_ID",
+          "dataName": "SALARYITEMDIRECTION_DIRECTION",
           "dataNullable": true,
           "dataPrimaryKey": true,
           "dataType": "INTEGER",
-          "name": "Id",
-          "widgetIsMajor": true,
-          "widgetLength": "20",
-          "widgetSize": "",
-          "widgetType": "TEXTBOX",
-          "dataNotNull": false,
-          "dataUnique": false,
-          "isRequiredProperty": false,
-          "isCalculatedProperty": false,
-          "widgetLabel": "Id",
-          "widgetDropdownUrl": "",
-          "dataTypeJava": "int",
-          "dataTypeTypescript": "number",
-          "inputRule": ""
-        },
-        {
-          "dataName": "SALARYITEMDIRECTION_NAME",
-          "dataNullable": true,
-          "dataType": "INTEGER",
-          "isRequiredProperty": true,
-          "name": "Name",
+          "name": "Direction",
           "widgetIsMajor": true,
           "widgetLength": "20",
           "widgetSize": "",
           "widgetType": "TEXTBOX",
           "dataNotNull": false,
           "dataAutoIncrement": false,
-          "dataPrimaryKey": false,
           "dataUnique": false,
+          "isRequiredProperty": false,
           "isCalculatedProperty": false,
-          "widgetLabel": "Name",
+          "widgetLabel": "Direction",
           "widgetDropdownUrl": "",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
@@ -1184,9 +1163,9 @@
       "dataSource": "DefaultDB",
       "referencedProjections": [],
       "primaryKeys": [
-        "Id"
+        "Direction"
       ],
-      "primaryKeysString": "Id"
+      "primaryKeysString": "Direction"
     },
     {
       "properties": [

@@ -36,11 +36,8 @@ angular.module('page', ["ideUI", "ideView"])
 					}
 				},
 			};
-			if (entity.Id !== undefined) {
-				filter.$filter.equals.Id = entity.Id;
-			}
-			if (entity.Name !== undefined) {
-				filter.$filter.equals.Name = entity.Name;
+			if (entity.Direction !== undefined) {
+				filter.$filter.equals.Direction = entity.Direction;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

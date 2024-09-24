@@ -439,13 +439,13 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataName": "SALARYITEM_SALARYITEMDIRECTION",
+                        "dataName": "SALARYITEM_DIRECTION",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
                         "isRequiredProperty": "true",
-                        "name": "SalaryItemDirection",
-                        "widgetDropDownKey": "Id",
-                        "widgetDropDownValue": "Name",
+                        "name": "Direction",
+                        "widgetDropDownKey": "Direction",
+                        "widgetDropDownValue": "Direction",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
@@ -492,23 +492,11 @@
             {
                 "properties": [
                     {
-                        "dataAutoIncrement": "true",
-                        "dataName": "SALARYITEMDIRECTION_ID",
+                        "dataName": "SALARYITEMDIRECTION_DIRECTION",
                         "dataNullable": "true",
                         "dataPrimaryKey": "true",
                         "dataType": "INTEGER",
-                        "name": "Id",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "TEXTBOX"
-                    },
-                    {
-                        "dataName": "SALARYITEMDIRECTION_NAME",
-                        "dataNullable": "true",
-                        "dataType": "INTEGER",
-                        "isRequiredProperty": "true",
-                        "name": "Name",
+                        "name": "Direction",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",

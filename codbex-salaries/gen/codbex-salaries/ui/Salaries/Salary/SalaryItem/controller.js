@@ -125,14 +125,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("SalaryItem-details", {
 				action: "select",
 				entity: entity,
-				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
+				optionsDirection: $scope.optionsDirection,
 			});
 		};
 
 		$scope.openFilter = function (entity) {
 			messageHub.showDialogWindow("SalaryItem-filter", {
 				entity: $scope.filterEntity,
-				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
+				optionsDirection: $scope.optionsDirection,
 			});
 		};
 
@@ -143,7 +143,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: {},
 				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
-				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
+				optionsDirection: $scope.optionsDirection,
 			}, null, false);
 		};
 
@@ -153,7 +153,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: entity,
 				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
-				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
+				optionsDirection: $scope.optionsDirection,
 			}, null, false);
 		};
 
@@ -187,22 +187,22 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		};
 
 		//----------------Dropdowns-----------------//
-		$scope.optionsSalaryItemDirection = [];
+		$scope.optionsDirection = [];
 
 
 		$http.get("/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts").then(function (response) {
-			$scope.optionsSalaryItemDirection = response.data.map(e => {
+			$scope.optionsDirection = response.data.map(e => {
 				return {
-					value: e.Id,
-					text: e.Name
+					value: e.Direction,
+					text: e.Direction
 				}
 			});
 		});
 
-		$scope.optionsSalaryItemDirectionValue = function (optionKey) {
-			for (let i = 0; i < $scope.optionsSalaryItemDirection.length; i++) {
-				if ($scope.optionsSalaryItemDirection[i].value === optionKey) {
-					return $scope.optionsSalaryItemDirection[i].text;
+		$scope.optionsDirectionValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsDirection.length; i++) {
+				if ($scope.optionsDirection[i].value === optionKey) {
+					return $scope.optionsDirection[i].text;
 				}
 			}
 			return null;

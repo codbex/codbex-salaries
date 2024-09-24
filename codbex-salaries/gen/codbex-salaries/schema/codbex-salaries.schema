@@ -79,7 +79,7 @@
                     {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "SALARYITEM_SALARYITEMDIRECTION"
+                        "name": "SALARYITEM_DIRECTION"
                     },
                     {
                         "type": "DOUBLE",
@@ -95,14 +95,8 @@
                     {
                         "type": "INTEGER",
                         "primaryKey": true,
-                        "identity": true,
                         "nullable": true,
-                        "name": "SALARYITEMDIRECTION_ID"
-                    },
-                    {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "SALARYITEMDIRECTION_NAME"
+                        "name": "SALARYITEMDIRECTION_DIRECTION"
                     }
                 ]
             },
@@ -175,9 +169,9 @@
                 "type": "foreignKey",
                 "table": "CODBEX_SALARYITEM",
                 "constraintName": "SalaryItem_SalaryItemDirection",
-                "columns": "SALARYITEM_SALARYITEMDIRECTION",
+                "columns": "SALARYITEM_DIRECTION",
                 "referencedTable": "CODBEX_SALARYITEMDIRECTION",
-                "referencedColumns": "SALARYITEMDIRECTION_ID"
+                "referencedColumns": "SALARYITEMDIRECTION_DIRECTION"
             }
         ]
     },

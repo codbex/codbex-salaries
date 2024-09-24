@@ -8,7 +8,7 @@ export interface SalaryItemEntity {
     Salary?: number;
     Name?: string;
     Quantity?: number;
-    SalaryItemDirection?: number;
+    Direction?: number;
     Amount?: number;
 }
 
@@ -16,7 +16,7 @@ export interface SalaryItemCreateEntity {
     readonly Salary?: number;
     readonly Name?: string;
     readonly Quantity?: number;
-    readonly SalaryItemDirection?: number;
+    readonly Direction?: number;
 }
 
 export interface SalaryItemUpdateEntity extends SalaryItemCreateEntity {
@@ -30,7 +30,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number | number[];
             Name?: string | string[];
             Quantity?: number | number[];
-            SalaryItemDirection?: number | number[];
+            Direction?: number | number[];
             Amount?: number | number[];
         };
         notEquals?: {
@@ -38,7 +38,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number | number[];
             Name?: string | string[];
             Quantity?: number | number[];
-            SalaryItemDirection?: number | number[];
+            Direction?: number | number[];
             Amount?: number | number[];
         };
         contains?: {
@@ -46,7 +46,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number;
             Name?: string;
             Quantity?: number;
-            SalaryItemDirection?: number;
+            Direction?: number;
             Amount?: number;
         };
         greaterThan?: {
@@ -54,7 +54,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number;
             Name?: string;
             Quantity?: number;
-            SalaryItemDirection?: number;
+            Direction?: number;
             Amount?: number;
         };
         greaterThanOrEqual?: {
@@ -62,7 +62,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number;
             Name?: string;
             Quantity?: number;
-            SalaryItemDirection?: number;
+            Direction?: number;
             Amount?: number;
         };
         lessThan?: {
@@ -70,7 +70,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number;
             Name?: string;
             Quantity?: number;
-            SalaryItemDirection?: number;
+            Direction?: number;
             Amount?: number;
         };
         lessThanOrEqual?: {
@@ -78,7 +78,7 @@ export interface SalaryItemEntityOptions {
             Salary?: number;
             Name?: string;
             Quantity?: number;
-            SalaryItemDirection?: number;
+            Direction?: number;
             Amount?: number;
         };
     },
@@ -132,8 +132,8 @@ export class SalaryItemRepository {
                 type: "DOUBLE",
             },
             {
-                name: "SalaryItemDirection",
-                column: "SALARYITEM_SALARYITEMDIRECTION",
+                name: "Direction",
+                column: "SALARYITEM_DIRECTION",
                 type: "INTEGER",
             },
             {

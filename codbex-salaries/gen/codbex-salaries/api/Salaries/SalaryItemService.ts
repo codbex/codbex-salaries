@@ -139,8 +139,8 @@ class SalaryItemService {
         if (entity.Quantity === null || entity.Quantity === undefined) {
             throw new ValidationError(`The 'Quantity' property is required, provide a valid value`);
         }
-        if (entity.SalaryItemDirection === null || entity.SalaryItemDirection === undefined) {
-            throw new ValidationError(`The 'SalaryItemDirection' property is required, provide a valid value`);
+        if (entity.Direction === null || entity.Direction === undefined) {
+            throw new ValidationError(`The 'Direction' property is required, provide a valid value`);
         }
         for (const next of validationModules) {
             next.validate(entity);

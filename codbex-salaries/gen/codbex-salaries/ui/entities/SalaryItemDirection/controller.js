@@ -31,7 +31,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow(
 				action.id,
 				{
-					id: $scope.entity.Id
+					id: $scope.entity.Direction
 				},
 				null,
 				true,
@@ -132,7 +132,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		};
 
 		$scope.deleteEntity = function (entity) {
-			let id = entity.Id;
+			let id = entity.Direction;
 			messageHub.showDialogAsync(
 				'Delete SalaryItemDirection?',
 				`Are you sure you want to delete SalaryItemDirection? This action cannot be undone.`,

@@ -14,7 +14,7 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
-			$scope.optionsSalaryItemDirection = params.optionsSalaryItemDirection;
+			$scope.optionsDirection = params.optionsDirection;
 		}
 
 		$scope.filter = function () {
@@ -49,8 +49,8 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Quantity !== undefined) {
 				filter.$filter.equals.Quantity = entity.Quantity;
 			}
-			if (entity.SalaryItemDirection !== undefined) {
-				filter.$filter.equals.SalaryItemDirection = entity.SalaryItemDirection;
+			if (entity.Direction !== undefined) {
+				filter.$filter.equals.Direction = entity.Direction;
 			}
 			if (entity.Amount !== undefined) {
 				filter.$filter.equals.Amount = entity.Amount;

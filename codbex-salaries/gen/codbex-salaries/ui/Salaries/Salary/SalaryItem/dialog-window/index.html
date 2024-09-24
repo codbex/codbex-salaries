@@ -65,17 +65,17 @@
                     </fd-form-item>
                     <fd-form-item class="fd-row">
                     	<div class="fd-col fd-col-md--2">
-                        	<fd-form-label for="idSalaryItemDirection" dg-required="true" dg-colon="true">SalaryItemDirection</fd-form-label>
+                        	<fd-form-label for="idDirection" dg-required="true" dg-colon="true">Direction</fd-form-label>
                         </div>
                         <div class="fd-col  fd-col-md--8 ">
-	                        <fd-combobox-input id="idSalaryItemDirection"
-	                            name="SalaryItemDirection"
-	                            state="{{ forms.details['SalaryItemDirection'].$valid ? '' : 'error' }}"
+	                        <fd-combobox-input id="idDirection"
+	                            name="Direction"
+	                            state="{{ forms.details['Direction'].$valid ? '' : 'error' }}"
 	                            ng-required="true"
-	                            ng-model="entity.SalaryItemDirection"
+	                            ng-model="entity.Direction"
 	                            dg-disabled="action === 'select'"
-	                            dropdown-items="optionsSalaryItemDirection"
-	                            dg-placeholder="Search SalaryItemDirection ...">
+	                            dropdown-items="optionsDirection"
+	                            dg-placeholder="Search Direction ...">
 	                        </fd-combobox-input>
 	                    </div>
                     </fd-form-item>
