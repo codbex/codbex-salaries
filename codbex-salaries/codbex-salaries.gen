@@ -846,11 +846,13 @@
           "dataType": "INTEGER",
           "isRequiredProperty": true,
           "name": "Salary",
-          "widgetIsMajor": true,
+          "relationshipCardinality": "1_n",
+          "relationshipName": "SalaryItem_Salary",
+          "relationshipType": "COMPOSITION",
+          "widgetIsMajor": false,
           "widgetLength": "20",
           "widgetSize": "",
           "widgetType": "TEXTBOX",
-          "relationshipName": "SalaryItem_Salary",
           "relationshipEntityName": "Salary",
           "relationshipEntityPerspectiveName": "Salaries",
           "relationshipEntityPerspectiveLabel": "Entities",
@@ -986,6 +988,8 @@
         "Id"
       ],
       "primaryKeysString": "Id",
+      "masterEntity": "Salary",
+      "masterEntityId": "Salary",
       "hasDropdowns": true
     },
     {

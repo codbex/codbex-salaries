@@ -43,13 +43,13 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		resetPagination();
 
 		//-----------------Events-------------------//
-		messageHub.onDidReceiveMessage("codbex-salaries.Salaries.${masterEntity}.entitySelected", function (msg) {
+		messageHub.onDidReceiveMessage("codbex-salaries.Salaries.Salary.entitySelected", function (msg) {
 			resetPagination();
 			$scope.selectedMainEntityId = msg.data.selectedMainEntityId;
 			$scope.loadPage($scope.dataPage);
 		}, true);
 
-		messageHub.onDidReceiveMessage("codbex-salaries.Salaries.${masterEntity}.clearDetails", function (msg) {
+		messageHub.onDidReceiveMessage("codbex-salaries.Salaries.Salary.clearDetails", function (msg) {
 			$scope.$apply(function () {
 				resetPagination();
 				$scope.selectedMainEntityId = null;
@@ -81,7 +81,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		//-----------------Events-------------------//
 
 		$scope.loadPage = function (pageNumber, filter) {
-			let ${masterEntityId} = $scope.selectedMainEntityId;
+			let Salary = $scope.selectedMainEntityId;
 			$scope.dataPage = pageNumber;
 			if (!filter && $scope.filter) {
 				filter = $scope.filter;
@@ -95,7 +95,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			if (!filter.$filter.equals) {
 				filter.$filter.equals = {};
 			}
-			filter.$filter.equals.${masterEntityId} = ${masterEntityId};
+			filter.$filter.equals.Salary = Salary;
 			entityApi.count(filter).then(function (response) {
 				if (response.status != 200) {
 					messageHub.showAlertError("SalaryItem", `Unable to count SalaryItem: '${response.message}'`);
@@ -141,7 +141,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("SalaryItem-details", {
 				action: "create",
 				entity: {},
-				selectedMainEntityKey: "${masterEntityId}",
+				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
 				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
 			}, null, false);
@@ -151,7 +151,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("SalaryItem-details", {
 				action: "update",
 				entity: entity,
-				selectedMainEntityKey: "${masterEntityId}",
+				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
 				optionsSalaryItemDirection: $scope.optionsSalaryItemDirection,
 			}, null, false);

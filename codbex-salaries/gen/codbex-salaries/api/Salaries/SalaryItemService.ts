@@ -19,13 +19,13 @@ class SalaryItemService {
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
 
-            let ${masterEntityId} = parseInt(ctx.queryParameters.${masterEntityId});
-            ${masterEntityId} = isNaN(${masterEntityId}) ? ctx.queryParameters.${masterEntityId} : ${masterEntityId};
+            let Salary = parseInt(ctx.queryParameters.Salary);
+            Salary = isNaN(Salary) ? ctx.queryParameters.Salary : Salary;
 
-            if (${masterEntityId} !== undefined) {
+            if (Salary !== undefined) {
                 options.$filter = {
                     equals: {
-                        ${masterEntityId}: ${masterEntityId}
+                        Salary: Salary
                     }
                 };
             }

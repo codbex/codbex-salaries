@@ -32,7 +32,6 @@
 			<table fd-table display-mode="compact" inner-borders="top" outer-borders="none">
 				<thead fd-table-header sticky="true">
 					<tr fd-table-row>
-						<th fd-table-header-cell>Salary</th>
 						<th fd-table-header-cell>Name</th>
 						<th fd-table-header-cell>Quantity</th>
 						<th fd-table-header-cell>SalaryItemDirection</th>
@@ -46,7 +45,6 @@
 					</tr>
 					<tr fd-table-row hoverable="true" ng-repeat="next in data"
 						dg-selected="next.Id === selectedEntity.Id" ng-click="selectEntity(next)">
-						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Salary}}</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Name}}</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">{{next.Quantity}}</td>
 						<td fd-table-cell ng-click="openDetails(next)" hoverable="true" activable="true">

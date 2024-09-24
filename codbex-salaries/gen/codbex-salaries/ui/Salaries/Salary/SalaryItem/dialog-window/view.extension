@@ -1,5 +1,5 @@
 {
-    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries//SalaryItem/dialog-filter/view.js",
+    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/dialog-window/view.js",
     "extensionPoint": "codbex-salaries-dialog-window",
     "description": "codbex-salaries - Application Dialog Window"
 }

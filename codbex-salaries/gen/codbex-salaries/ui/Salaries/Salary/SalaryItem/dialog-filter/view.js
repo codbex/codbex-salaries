@@ -4,9 +4,9 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "SalaryItem-details",
-    label: "SalaryItem",
-    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/${masterEntity}/SalaryItem/dialog-window/index.html",
+    id: "SalaryItem-filter",
+    label: "SalaryItem Filter",
+    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/dialog-filter/index.html",
     perspectiveName: "Salaries",
 };
 

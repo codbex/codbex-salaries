@@ -8,7 +8,7 @@ const viewData = {
     label: "SalaryItem",
     factory: "frame",
     region: "bottom",
-    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/${masterEntity}/SalaryItem/index.html",
+    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/index.html",
     perspectiveName: "Salaries",
 };
 

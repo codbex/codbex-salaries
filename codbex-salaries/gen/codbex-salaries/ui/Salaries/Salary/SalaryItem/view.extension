@@ -1,5 +1,5 @@
 {
-    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries/${masterEntity}/SalaryItem/view.js",
+    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/view.js",
     "extensionPoint": "codbex-salaries-view",
     "description": "codbex-salaries - Application View - Details"
 }
