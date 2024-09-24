@@ -444,7 +444,7 @@
                         "dataType": "INTEGER",
                         "isRequiredProperty": "true",
                         "name": "Direction",
-                        "widgetDropDownKey": "Id",
+                        "widgetDropDownKey": "Direction",
                         "widgetDropDownValue": "Direction",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
@@ -654,22 +654,10 @@
             {
                 "properties": [
                     {
-                        "dataAutoIncrement": "true",
-                        "dataName": "SALARYITEMDIRECTION_ID",
+                        "dataName": "SALARYITEMDIRECTION_DIRECTION",
                         "dataNullable": "true",
                         "dataPrimaryKey": "true",
                         "dataType": "INTEGER",
-                        "name": "Id",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "TEXTBOX"
-                    },
-                    {
-                        "dataName": "SALARYITEMDIRECTION_DIRECTION",
-                        "dataNullable": "true",
-                        "dataType": "INTEGER",
-                        "isRequiredProperty": "true",
                         "name": "Direction",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",

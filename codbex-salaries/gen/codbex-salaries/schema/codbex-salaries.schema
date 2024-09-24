@@ -114,12 +114,6 @@
                     {
                         "type": "INTEGER",
                         "primaryKey": true,
-                        "identity": true,
-                        "nullable": true,
-                        "name": "SALARYITEMDIRECTION_ID"
-                    },
-                    {
-                        "type": "INTEGER",
                         "nullable": true,
                         "name": "SALARYITEMDIRECTION_DIRECTION"
                     }
@@ -177,7 +171,7 @@
                 "constraintName": "SalaryItem_SalaryItemDirection",
                 "columns": "SALARYITEM_DIRECTION",
                 "referencedTable": "CODBEX_SALARYITEMDIRECTION",
-                "referencedColumns": "SALARYITEMDIRECTION_ID"
+                "referencedColumns": "SALARYITEMDIRECTION_DIRECTION"
             }
         ]
     },

@@ -1441,47 +1441,47 @@ paths:
                 value:
                   $filter:
                     notEquals:
-                      Id: 33
+                      Direction: 33
                     greaterThan:
-                      Id: 0
+                      Direction: 0
                     lessThanOrEqual:
-                      Id: 100
+                      Direction: 100
               countWithEquals:
                 summary: Count with Equals
                 value:
                   $filter:
                     equals:
-                      Id: 0
+                      Direction: 0
               countWithNotEquals:
                 summary: Count with Not Equals
                 value:
                   $filter:
                     notEquals:
-                      Id: 0
+                      Direction: 0
               countWithGreaterThan:
                 summary: Count with Greater Than
                 value:
                   $filter:
                     greaterThan:
-                      Id: 0
+                      Direction: 0
               countWithGreaterThanOrEqual:
                 summary: Count with Greater Than Or Equal
                 value:
                   $filter:
                     greaterThanOrEqual:
-                      Id: 0
+                      Direction: 0
               countWithLessThan:
                 summary: Count with Less Than
                 value:
                   $filter:
                     lessThan:
-                      Id: 0
+                      Direction: 0
               countWithLessThanOrEqual:
                 summary: Count with Less Than Or Equal
                 value:
                   $filter:
                     lessThanOrEqual:
-                      Id: 0
+                      Direction: 0
         required: true
       responses:
         200:
@@ -1519,47 +1519,47 @@ paths:
                 value:
                   $filter:
                     notEquals:
-                      Id: 33
+                      Direction: 33
                     greaterThan:
-                      Id: 0
+                      Direction: 0
                     lessThanOrEqual:
-                      Id: 100
+                      Direction: 100
               searchWithEquals:
                 summary: Search with Equals
                 value:
                   $filter:
                     equals:
-                      Id: 0
+                      Direction: 0
               searchWithNotEquals:
                 summary: Search with Not Equals
                 value:
                   $filter:
                     notEquals:
-                      Id: 0
+                      Direction: 0
               searchWithGreaterThan:
                 summary: Search with Greater Than
                 value:
                   $filter:
                     greaterThan:
-                      Id: 0
+                      Direction: 0
               searchWithGreaterThanOrEqual:
                 summary: Search with Greater Than Or Equal
                 value:
                   $filter:
                     greaterThanOrEqual:
-                      Id: 0
+                      Direction: 0
               searchWithLessThan:
                 summary: Search with Less Than
                 value:
                   $filter:
                     lessThan:
-                      Id: 0
+                      Direction: 0
               searchWithLessThanOrEqual:
                 summary: Search with Less Than Or Equal
                 value:
                   $filter:
                     lessThanOrEqual:
-                      Id: 0
+                      Direction: 0
         required: true
       responses:
         200:
@@ -2282,11 +2282,7 @@ components:
     SalaryItemDirection:
       type: object
       required:
-        - Direction
       properties:
-        Id:
-          type: integer
-          format: int32
         Direction:
           type: integer
           format: int32
@@ -2299,14 +2295,6 @@ components:
             equals:
               type: object
               properties:
-                Id:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
                 Direction:
                   oneOf:
                     - type: integer
@@ -2318,14 +2306,6 @@ components:
             notEquals:
               type: object
               properties:
-                Id:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
                 Direction:
                   oneOf:
                     - type: integer
@@ -2337,52 +2317,39 @@ components:
             contains:
               type: object
               properties:
-                Id:
                 Direction:
             greaterThan:
               type: object
               properties:
-                Id:
-                  type: integer
-                  format: int32
                 Direction:
                   type: integer
                   format: int32
             greaterThanOrEqual:
               type: object
               properties:
-                Id:
-                  type: integer
-                  format: int32
                 Direction:
                   type: integer
                   format: int32
             lessThan:
               type: object
               properties:
-                Id:
-                  type: integer
-                  format: int32
                 Direction:
                   type: integer
                   format: int32
             lessThanOrEqual:
               type: object
               properties:
-                Id:
-                  type: integer
-                  format: int32
                 Direction:
                   type: integer
                   format: int32
         $select:
           type: array
-          example: ["Id", "Direction"]
+          example: ["Direction"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Direction"
+            example: "Direction"
         $order:
           type: string
           enum: ["asc", "desc"]
