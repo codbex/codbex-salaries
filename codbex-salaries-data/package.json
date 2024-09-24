@@ -1,0 +1,7 @@
+{
+    "name": "codbex-salaries-data",
+    "repository": {
+        "url": "https://github.com/codbex/codbex-salaries.git",
+        "type": "git"
+    }
+}

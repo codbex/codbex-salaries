@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "table": "CODBEX_SALARYITEMDIRECTION",
+      "schema": "PUBLIC",
+      "file": "/codbex-salaries-data/salary-item-direction.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": ""
+    }
+  ]
+}
