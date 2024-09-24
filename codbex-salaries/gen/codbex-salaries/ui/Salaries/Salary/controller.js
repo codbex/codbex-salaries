@@ -114,6 +114,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				selectedMainEntityId: entity.Id,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsCurrency: $scope.optionsCurrency,
+				optionsSalaryStatus: $scope.optionsSalaryStatus,
+				optionsJobPosition: $scope.optionsJobPosition,
 			});
 		};
 
@@ -125,6 +127,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: {},
 				optionsEmployee: $scope.optionsEmployee,
 				optionsCurrency: $scope.optionsCurrency,
+				optionsSalaryStatus: $scope.optionsSalaryStatus,
+				optionsJobPosition: $scope.optionsJobPosition,
 			});
 		};
 
@@ -134,6 +138,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: $scope.selectedEntity,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsCurrency: $scope.optionsCurrency,
+				optionsSalaryStatus: $scope.optionsSalaryStatus,
+				optionsJobPosition: $scope.optionsJobPosition,
 			});
 		};
 
@@ -172,12 +178,16 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: $scope.filterEntity,
 				optionsEmployee: $scope.optionsEmployee,
 				optionsCurrency: $scope.optionsCurrency,
+				optionsSalaryStatus: $scope.optionsSalaryStatus,
+				optionsJobPosition: $scope.optionsJobPosition,
 			});
 		};
 
 		//----------------Dropdowns-----------------//
 		$scope.optionsEmployee = [];
 		$scope.optionsCurrency = [];
+		$scope.optionsSalaryStatus = [];
+		$scope.optionsJobPosition = [];
 
 
 		$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
@@ -198,6 +208,24 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
+		$http.get("/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts").then(function (response) {
+			$scope.optionsSalaryStatus = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
+
+		$http.get("/services/ts/codbex-jobs/gen/codbex-jobs/api/Teams/JobPositionService.ts").then(function (response) {
+			$scope.optionsJobPosition = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.JobRole
+				}
+			});
+		});
+
 		$scope.optionsEmployeeValue = function (optionKey) {
 			for (let i = 0; i < $scope.optionsEmployee.length; i++) {
 				if ($scope.optionsEmployee[i].value === optionKey) {
@@ -210,6 +238,22 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			for (let i = 0; i < $scope.optionsCurrency.length; i++) {
 				if ($scope.optionsCurrency[i].value === optionKey) {
 					return $scope.optionsCurrency[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsSalaryStatusValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsSalaryStatus.length; i++) {
+				if ($scope.optionsSalaryStatus[i].value === optionKey) {
+					return $scope.optionsSalaryStatus[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsJobPositionValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsJobPosition.length; i++) {
+				if ($scope.optionsJobPosition[i].value === optionKey) {
+					return $scope.optionsJobPosition[i].text;
 				}
 			}
 			return null;

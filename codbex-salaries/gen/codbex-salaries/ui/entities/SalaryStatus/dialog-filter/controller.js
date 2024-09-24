@@ -1,6 +1,6 @@
 angular.module('page', ["ideUI", "ideView"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'codbex-salaries.Salaries.Salary';
+		messageHubProvider.eventIdPrefix = 'codbex-salaries.entities.SalaryStatus';
 	}])
 	.controller('PageController', ['$scope', 'messageHub', 'ViewParameters', function ($scope, messageHub, ViewParameters) {
 
@@ -14,10 +14,6 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
-			$scope.optionsEmployee = params.optionsEmployee;
-			$scope.optionsCurrency = params.optionsCurrency;
-			$scope.optionsSalaryStatus = params.optionsSalaryStatus;
-			$scope.optionsJobPosition = params.optionsJobPosition;
 		}
 
 		$scope.filter = function () {
@@ -43,32 +39,13 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Id !== undefined) {
 				filter.$filter.equals.Id = entity.Id;
 			}
-			if (entity.Employee !== undefined) {
-				filter.$filter.equals.Employee = entity.Employee;
-			}
-			if (entity.Currency !== undefined) {
-				filter.$filter.equals.Currency = entity.Currency;
-			}
-			if (entity.SalaryStatus !== undefined) {
-				filter.$filter.equals.SalaryStatus = entity.SalaryStatus;
-			}
-			if (entity.JobPosition !== undefined) {
-				filter.$filter.equals.JobPosition = entity.JobPosition;
-			}
-			if (entity.Gross !== undefined) {
-				filter.$filter.equals.Gross = entity.Gross;
-			}
-			if (entity.Net !== undefined) {
-				filter.$filter.equals.Net = entity.Net;
-			}
-			if (entity.Total !== undefined) {
-				filter.$filter.equals.Total = entity.Total;
+			if (entity.Name) {
+				filter.$filter.contains.Name = entity.Name;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,
 				filter: filter
 			});
-			messageHub.postMessage("clearDetails");
 			$scope.cancel();
 		};
 
@@ -78,7 +55,7 @@ angular.module('page', ["ideUI", "ideView"])
 		};
 
 		$scope.cancel = function () {
-			messageHub.closeDialogWindow("Salary-filter");
+			messageHub.closeDialogWindow("SalaryStatus-filter");
 		};
 
 		$scope.clearErrorMessage = function () {

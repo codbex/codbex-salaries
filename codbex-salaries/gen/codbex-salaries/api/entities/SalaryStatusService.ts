@@ -1,20 +1,20 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { SalaryRepository, SalaryEntityOptions } from "../../dao/Salaries/SalaryRepository";
+import { SalaryStatusRepository, SalaryStatusEntityOptions } from "../../dao/entities/SalaryStatusRepository";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-salaries-Salaries-Salary", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-salaries-entities-SalaryStatus", ["validate"]);
 
 @Controller
-class SalaryService {
+class SalaryStatusService {
 
-    private readonly repository = new SalaryRepository();
+    private readonly repository = new SalaryStatusRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: SalaryEntityOptions = {
+            const options: SalaryStatusEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
@@ -30,7 +30,7 @@ class SalaryService {
         try {
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/Salaries/SalaryService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -73,7 +73,7 @@ class SalaryService {
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("Salary not found");
+                HttpUtils.sendResponseNotFound("SalaryStatus not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -101,7 +101,7 @@ class SalaryService {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("Salary not found");
+                HttpUtils.sendResponseNotFound("SalaryStatus not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -119,17 +119,11 @@ class SalaryService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Employee === null || entity.Employee === undefined) {
-            throw new ValidationError(`The 'Employee' property is required, provide a valid value`);
+        if (entity.Name === null || entity.Name === undefined) {
+            throw new ValidationError(`The 'Name' property is required, provide a valid value`);
         }
-        if (entity.Currency === null || entity.Currency === undefined) {
-            throw new ValidationError(`The 'Currency' property is required, provide a valid value`);
-        }
-        if (entity.SalaryStatus === null || entity.SalaryStatus === undefined) {
-            throw new ValidationError(`The 'SalaryStatus' property is required, provide a valid value`);
-        }
-        if (entity.JobPosition === null || entity.JobPosition === undefined) {
-            throw new ValidationError(`The 'JobPosition' property is required, provide a valid value`);
+        if (entity.Name?.length > 20) {
+            throw new ValidationError(`The 'Name' exceeds the maximum length of [20] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);

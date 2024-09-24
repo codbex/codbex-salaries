@@ -23,6 +23,16 @@
                         "name": "SALARY_CURRENCY"
                     },
                     {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_SALARYSTATUS"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_JOBPOSITION"
+                    },
+                    {
                         "type": "DOUBLE",
                         "nullable": true,
                         "name": "SALARY_GROSS"
@@ -97,6 +107,25 @@
                 ]
             },
             {
+                "name": "CODBEX_SALARYSTATUS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "SALARYSTATUS_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "SALARYSTATUS_NAME"
+                    }
+                ]
+            },
+            {
                 "name": "Salary_Employee",
                 "type": "foreignKey",
                 "table": "CODBEX_SALARY",
@@ -113,6 +142,24 @@
                 "columns": "SALARY_CURRENCY",
                 "referencedTable": "CODBEX_CURRENCY",
                 "referencedColumns": "CURRENCY_ID"
+            },
+            {
+                "name": "Salary_SalaryStatus",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_SalaryStatus",
+                "columns": "SALARY_SALARYSTATUS",
+                "referencedTable": "CODBEX_SALARYSTATUS",
+                "referencedColumns": "SALARYSTATUS_ID"
+            },
+            {
+                "name": "Salary_JobPosition",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_JobPosition",
+                "columns": "SALARY_JOBPOSITION",
+                "referencedTable": "CODBEX_JOBPOSITION",
+                "referencedColumns": "JOBPOSITION_ID"
             },
             {
                 "name": "SalaryItem_Salary",

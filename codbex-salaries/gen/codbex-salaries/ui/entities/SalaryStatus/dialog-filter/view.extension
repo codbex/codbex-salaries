@@ -1,0 +1,5 @@
+{
+    "module": "codbex-salaries/gen/codbex-salaries/ui/entities/SalaryStatus/dialog-filter/view.js",
+    "extensionPoint": "codbex-salaries-dialog-window",
+    "description": "codbex-salaries - Application Dialog Window"
+}

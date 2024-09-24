@@ -7,6 +7,8 @@ export interface SalaryEntity {
     readonly Id: number;
     Employee?: number;
     Currency?: number;
+    SalaryStatus?: number;
+    JobPosition?: number;
     Gross?: number;
     Net?: number;
     Total?: number;
@@ -15,6 +17,8 @@ export interface SalaryEntity {
 export interface SalaryCreateEntity {
     readonly Employee?: number;
     readonly Currency?: number;
+    readonly SalaryStatus?: number;
+    readonly JobPosition?: number;
     readonly Gross?: number;
     readonly Net?: number;
     readonly Total?: number;
@@ -30,6 +34,8 @@ export interface SalaryEntityOptions {
             Id?: number | number[];
             Employee?: number | number[];
             Currency?: number | number[];
+            SalaryStatus?: number | number[];
+            JobPosition?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
             Total?: number | number[];
@@ -38,6 +44,8 @@ export interface SalaryEntityOptions {
             Id?: number | number[];
             Employee?: number | number[];
             Currency?: number | number[];
+            SalaryStatus?: number | number[];
+            JobPosition?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
             Total?: number | number[];
@@ -46,6 +54,8 @@ export interface SalaryEntityOptions {
             Id?: number;
             Employee?: number;
             Currency?: number;
+            SalaryStatus?: number;
+            JobPosition?: number;
             Gross?: number;
             Net?: number;
             Total?: number;
@@ -54,6 +64,8 @@ export interface SalaryEntityOptions {
             Id?: number;
             Employee?: number;
             Currency?: number;
+            SalaryStatus?: number;
+            JobPosition?: number;
             Gross?: number;
             Net?: number;
             Total?: number;
@@ -62,6 +74,8 @@ export interface SalaryEntityOptions {
             Id?: number;
             Employee?: number;
             Currency?: number;
+            SalaryStatus?: number;
+            JobPosition?: number;
             Gross?: number;
             Net?: number;
             Total?: number;
@@ -70,6 +84,8 @@ export interface SalaryEntityOptions {
             Id?: number;
             Employee?: number;
             Currency?: number;
+            SalaryStatus?: number;
+            JobPosition?: number;
             Gross?: number;
             Net?: number;
             Total?: number;
@@ -78,6 +94,8 @@ export interface SalaryEntityOptions {
             Id?: number;
             Employee?: number;
             Currency?: number;
+            SalaryStatus?: number;
+            JobPosition?: number;
             Gross?: number;
             Net?: number;
             Total?: number;
@@ -125,6 +143,16 @@ export class SalaryRepository {
             {
                 name: "Currency",
                 column: "SALARY_CURRENCY",
+                type: "INTEGER",
+            },
+            {
+                name: "SalaryStatus",
+                column: "SALARY_SALARYSTATUS",
+                type: "INTEGER",
+            },
+            {
+                name: "JobPosition",
+                column: "SALARY_JOBPOSITION",
                 type: "INTEGER",
             },
             {
