@@ -29,14 +29,14 @@
                 <fd-form-group dg-header="{{formHeaders[action]}}" name="entityForm" class="fd-container fd-form-layout-grid-container">
                     <fd-form-item class="fd-row">
                     	<div class="fd-col fd-col-md--2">
-                        	<fd-form-label for="idDirection" dg-required="false" dg-colon="true">Direction</fd-form-label>
+                        	<fd-form-label for="idDirection" dg-required="true" dg-colon="true">Direction</fd-form-label>
                         </div>
                         <div class="fd-col  fd-col-md--8 ">
 	                        <fd-form-input-message-group dg-inactive="{{ forms.details['Direction'].$valid }}">
 	                            <fd-input id="idDirection"
 	                                name="Direction"
 	                                state="{{ forms.details['Direction'].$valid ? '' : 'error' }}"
-									ng-required="false"
+									ng-required="true"
 	                                ng-model="entity.Direction"
 	                                ng-readonly="action === 'select'"
 	                                ng-minlength="${property.minLength} || 0"

@@ -4,37 +4,46 @@ import { extensions } from "sdk/extensions";
 import { dao as daoApi } from "sdk/db";
 
 export interface SalaryItemDirectionEntity {
-    readonly Direction: number;
+    readonly Id: number;
+    Direction?: number;
 }
 
 export interface SalaryItemDirectionCreateEntity {
+    readonly Direction?: number;
 }
 
 export interface SalaryItemDirectionUpdateEntity extends SalaryItemDirectionCreateEntity {
-    readonly Direction: number;
+    readonly Id: number;
 }
 
 export interface SalaryItemDirectionEntityOptions {
     $filter?: {
         equals?: {
+            Id?: number | number[];
             Direction?: number | number[];
         };
         notEquals?: {
+            Id?: number | number[];
             Direction?: number | number[];
         };
         contains?: {
+            Id?: number;
             Direction?: number;
         };
         greaterThan?: {
+            Id?: number;
             Direction?: number;
         };
         greaterThanOrEqual?: {
+            Id?: number;
             Direction?: number;
         };
         lessThan?: {
+            Id?: number;
             Direction?: number;
         };
         lessThanOrEqual?: {
+            Id?: number;
             Direction?: number;
         };
     },
@@ -66,11 +75,16 @@ export class SalaryItemDirectionRepository {
         table: "CODBEX_SALARYITEMDIRECTION",
         properties: [
             {
+                name: "Id",
+                column: "SALARYITEMDIRECTION_ID",
+                type: "INTEGER",
+                id: true,
+                autoIncrement: true,
+            },
+            {
                 name: "Direction",
                 column: "SALARYITEMDIRECTION_DIRECTION",
                 type: "INTEGER",
-                id: true,
-                autoIncrement: false,
             }
         ]
     };
@@ -97,8 +111,8 @@ export class SalaryItemDirectionRepository {
             table: "CODBEX_SALARYITEMDIRECTION",
             entity: entity,
             key: {
-                name: "Direction",
-                column: "SALARYITEMDIRECTION_DIRECTION",
+                name: "Id",
+                column: "SALARYITEMDIRECTION_ID",
                 value: id
             }
         });
@@ -114,15 +128,15 @@ export class SalaryItemDirectionRepository {
             entity: entity,
             previousEntity: previousEntity,
             key: {
-                name: "Direction",
-                column: "SALARYITEMDIRECTION_DIRECTION",
-                value: entity.Direction
+                name: "Id",
+                column: "SALARYITEMDIRECTION_ID",
+                value: entity.Id
             }
         });
     }
 
     public upsert(entity: SalaryItemDirectionCreateEntity | SalaryItemDirectionUpdateEntity): number {
-        const id = (entity as SalaryItemDirectionUpdateEntity).Direction;
+        const id = (entity as SalaryItemDirectionUpdateEntity).Id;
         if (!id) {
             return this.create(entity);
         }
@@ -144,8 +158,8 @@ export class SalaryItemDirectionRepository {
             table: "CODBEX_SALARYITEMDIRECTION",
             entity: entity,
             key: {
-                name: "Direction",
-                column: "SALARYITEMDIRECTION_DIRECTION",
+                name: "Id",
+                column: "SALARYITEMDIRECTION_ID",
                 value: id
             }
         });

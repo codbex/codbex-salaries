@@ -193,7 +193,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$http.get("/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts").then(function (response) {
 			$scope.optionsDirection = response.data.map(e => {
 				return {
-					value: e.Direction,
+					value: e.Id,
 					text: e.Direction
 				}
 			});

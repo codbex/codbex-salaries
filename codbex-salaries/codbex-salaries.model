@@ -444,7 +444,7 @@
                         "dataType": "INTEGER",
                         "isRequiredProperty": "true",
                         "name": "Direction",
-                        "widgetDropDownKey": "Direction",
+                        "widgetDropDownKey": "Id",
                         "widgetDropDownValue": "Direction",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
@@ -456,7 +456,7 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
-                        "calculatedPropertyExpressionCreate": "entity[\"Quantity\"]*entity[\"SalaryItemDirection\"]",
+                        "calculatedPropertyExpressionCreate": "entity[\"Quantity\"]*entity[\"Direction\"]",
                         "dataName": "SALARYITEM_AMOUNT",
                         "dataNullable": "true",
                         "dataType": "DOUBLE",
@@ -488,41 +488,6 @@
                 "title": "SalaryItem",
                 "tooltip": "SalaryItem",
                 "type": "DEPENDENT"
-            },
-            {
-                "properties": [
-                    {
-                        "dataName": "SALARYITEMDIRECTION_DIRECTION",
-                        "dataNullable": "true",
-                        "dataPrimaryKey": "true",
-                        "dataType": "INTEGER",
-                        "name": "Direction",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "TEXTBOX"
-                    }
-                ],
-                "caption": "Manage entity SalaryItemDirection",
-                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}SALARYITEMDIRECTION\"",
-                "dataName": "SALARYITEMDIRECTION",
-                "dataQuery": "",
-                "generateReport": "false",
-                "icon": "/services/web/resources/unicons/file.svg",
-                "layoutType": "MANAGE",
-                "menuIndex": "100",
-                "menuKey": "salaryitemdirection",
-                "menuLabel": "SalaryItemDirection",
-                "name": "SalaryItemDirection",
-                "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
-                "perspectiveLabel": "Entities",
-                "perspectiveName": "entities",
-                "perspectiveOrder": "100",
-                "perspectiveRole": "",
-                "title": "SalaryItemDirection",
-                "tooltip": "SalaryItemDirection",
-                "type": "PRIMARY"
             },
             {
                 "properties": [
@@ -685,6 +650,53 @@
                 "title": "JobPosition",
                 "tooltip": "JobPosition",
                 "type": "PROJECTION"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "SALARYITEMDIRECTION_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "name": "Id",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "SALARYITEMDIRECTION_DIRECTION",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "isRequiredProperty": "true",
+                        "name": "Direction",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    }
+                ],
+                "caption": "Manage entity SalaryItemDirection",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}SALARYITEMDIRECTION\"",
+                "dataName": "SALARYITEMDIRECTION",
+                "dataQuery": "",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "salaryitemdirection",
+                "menuLabel": "SalaryItemDirection",
+                "name": "SalaryItemDirection",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
+                "perspectiveLabel": "Entities",
+                "perspectiveName": "entities",
+                "perspectiveOrder": "100",
+                "perspectiveRole": "",
+                "title": "SalaryItemDirection",
+                "tooltip": "SalaryItemDirection",
+                "type": "PRIMARY"
             }
         ],
         "perspectives": [

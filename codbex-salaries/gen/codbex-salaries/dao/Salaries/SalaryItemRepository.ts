@@ -161,7 +161,7 @@ export class SalaryItemRepository {
 
     public create(entity: SalaryItemCreateEntity): number {
         // @ts-ignore
-        (entity as SalaryItemEntity).Amount = entity["Quantity"]*entity["SalaryItemDirection"];
+        (entity as SalaryItemEntity).Amount = entity["Quantity"]*entity["Direction"];
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",

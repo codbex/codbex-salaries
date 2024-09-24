@@ -36,6 +36,9 @@ angular.module('page', ["ideUI", "ideView"])
 					}
 				},
 			};
+			if (entity.Id !== undefined) {
+				filter.$filter.equals.Id = entity.Id;
+			}
 			if (entity.Direction !== undefined) {
 				filter.$filter.equals.Direction = entity.Direction;
 			}

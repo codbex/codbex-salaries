@@ -29,8 +29,8 @@ class SalaryItemDirectionService {
     public create(entity: any) {
         try {
             this.validateEntity(entity);
-            entity.Direction = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts/" + entity.Direction);
+            entity.Id = this.repository.create(entity);
+            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -83,7 +83,7 @@ class SalaryItemDirectionService {
     @Put("/:id")
     public update(entity: any, ctx: any) {
         try {
-            entity.Direction = ctx.pathParameters.id;
+            entity.Id = ctx.pathParameters.id;
             this.validateEntity(entity);
             this.repository.update(entity);
             return entity;
@@ -119,6 +119,9 @@ class SalaryItemDirectionService {
     }
 
     private validateEntity(entity: any): void {
+        if (entity.Direction === null || entity.Direction === undefined) {
+            throw new ValidationError(`The 'Direction' property is required, provide a valid value`);
+        }
         for (const next of validationModules) {
             next.validate(entity);
         }

@@ -64,8 +64,8 @@
     },
     "entities": {
       "views": [
-        "SalaryItemDirection",
-        "SalaryStatus"
+        "SalaryStatus",
+        "SalaryItemDirection"
       ],
       "name": "entities",
       "label": "entities",
@@ -1042,7 +1042,7 @@
           "dataType": "INTEGER",
           "isRequiredProperty": true,
           "name": "Direction",
-          "widgetDropDownKey": "Direction",
+          "widgetDropDownKey": "Id",
           "widgetDropDownValue": "Direction",
           "widgetIsMajor": true,
           "widgetLength": "20",
@@ -1064,7 +1064,7 @@
           "inputRule": ""
         },
         {
-          "calculatedPropertyExpressionCreate": "entity[\"Quantity\"]*entity[\"SalaryItemDirection\"]",
+          "calculatedPropertyExpressionCreate": "entity[\"Quantity\"]*entity[\"Direction\"]",
           "dataName": "SALARYITEM_AMOUNT",
           "dataNullable": true,
           "dataType": "DOUBLE",
@@ -1115,57 +1115,6 @@
       "masterEntity": "Salary",
       "masterEntityId": "Salary",
       "hasDropdowns": true
-    },
-    {
-      "properties": [
-        {
-          "dataName": "SALARYITEMDIRECTION_DIRECTION",
-          "dataNullable": true,
-          "dataPrimaryKey": true,
-          "dataType": "INTEGER",
-          "name": "Direction",
-          "widgetIsMajor": true,
-          "widgetLength": "20",
-          "widgetSize": "",
-          "widgetType": "TEXTBOX",
-          "dataNotNull": false,
-          "dataAutoIncrement": false,
-          "dataUnique": false,
-          "isRequiredProperty": false,
-          "isCalculatedProperty": false,
-          "widgetLabel": "Direction",
-          "widgetDropdownUrl": "",
-          "dataTypeJava": "int",
-          "dataTypeTypescript": "number",
-          "inputRule": ""
-        }
-      ],
-      "caption": "Manage entity SalaryItemDirection",
-      "dataCount": "SELECT COUNT(*) AS COUNT FROM \"CODBEX_SALARYITEMDIRECTION\"",
-      "dataName": "SALARYITEMDIRECTION",
-      "dataQuery": "",
-      "generateReport": "false",
-      "icon": "/services/web/resources/unicons/file.svg",
-      "layoutType": "MANAGE",
-      "menuIndex": "100",
-      "menuKey": "salaryitemdirection",
-      "menuLabel": "SalaryItemDirection",
-      "name": "SalaryItemDirection",
-      "navigationPath": "/Home",
-      "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
-      "perspectiveLabel": "Entities",
-      "perspectiveName": "entities",
-      "perspectiveOrder": "100",
-      "perspectiveRole": "",
-      "title": "SalaryItemDirection",
-      "tooltip": "SalaryItemDirection",
-      "type": "PRIMARY",
-      "dataSource": "DefaultDB",
-      "referencedProjections": [],
-      "primaryKeys": [
-        "Direction"
-      ],
-      "primaryKeysString": "Direction"
     },
     {
       "properties": [
@@ -1425,6 +1374,78 @@
       "primaryKeysString": "Id",
       "hasDropdowns": true,
       "masterEntityId": "Team"
+    },
+    {
+      "properties": [
+        {
+          "dataAutoIncrement": true,
+          "dataName": "SALARYITEMDIRECTION_ID",
+          "dataNullable": true,
+          "dataPrimaryKey": true,
+          "dataType": "INTEGER",
+          "name": "Id",
+          "widgetIsMajor": true,
+          "widgetLength": "20",
+          "widgetSize": "",
+          "widgetType": "TEXTBOX",
+          "dataNotNull": false,
+          "dataUnique": false,
+          "isRequiredProperty": false,
+          "isCalculatedProperty": false,
+          "widgetLabel": "Id",
+          "widgetDropdownUrl": "",
+          "dataTypeJava": "int",
+          "dataTypeTypescript": "number",
+          "inputRule": ""
+        },
+        {
+          "dataName": "SALARYITEMDIRECTION_DIRECTION",
+          "dataNullable": true,
+          "dataType": "INTEGER",
+          "isRequiredProperty": true,
+          "name": "Direction",
+          "widgetIsMajor": true,
+          "widgetLength": "20",
+          "widgetSize": "",
+          "widgetType": "TEXTBOX",
+          "dataNotNull": false,
+          "dataAutoIncrement": false,
+          "dataPrimaryKey": false,
+          "dataUnique": false,
+          "isCalculatedProperty": false,
+          "widgetLabel": "Direction",
+          "widgetDropdownUrl": "",
+          "dataTypeJava": "int",
+          "dataTypeTypescript": "number",
+          "inputRule": ""
+        }
+      ],
+      "caption": "Manage entity SalaryItemDirection",
+      "dataCount": "SELECT COUNT(*) AS COUNT FROM \"CODBEX_SALARYITEMDIRECTION\"",
+      "dataName": "SALARYITEMDIRECTION",
+      "dataQuery": "",
+      "generateReport": "false",
+      "icon": "/services/web/resources/unicons/file.svg",
+      "layoutType": "MANAGE",
+      "menuIndex": "100",
+      "menuKey": "salaryitemdirection",
+      "menuLabel": "SalaryItemDirection",
+      "name": "SalaryItemDirection",
+      "navigationPath": "/Home",
+      "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
+      "perspectiveLabel": "Entities",
+      "perspectiveName": "entities",
+      "perspectiveOrder": "100",
+      "perspectiveRole": "",
+      "title": "SalaryItemDirection",
+      "tooltip": "SalaryItemDirection",
+      "type": "PRIMARY",
+      "dataSource": "DefaultDB",
+      "referencedProjections": [],
+      "primaryKeys": [
+        "Id"
+      ],
+      "primaryKeysString": "Id"
     }
   ]
 }
