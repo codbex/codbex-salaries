@@ -128,9 +128,6 @@ class SalaryService {
         if (entity.SalaryStatus === null || entity.SalaryStatus === undefined) {
             throw new ValidationError(`The 'SalaryStatus' property is required, provide a valid value`);
         }
-        if (entity.JobPosition === null || entity.JobPosition === undefined) {
-            throw new ValidationError(`The 'JobPosition' property is required, provide a valid value`);
-        }
         for (const next of validationModules) {
             next.validate(entity);
         }

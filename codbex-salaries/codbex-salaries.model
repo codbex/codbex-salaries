@@ -70,7 +70,6 @@
                         "dataName": "SALARY_JOBPOSITION",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
-                        "isRequiredProperty": "true",
                         "name": "JobPosition",
                         "widgetDropDownKey": "Id",
                         "widgetDropDownValue": "JobRole",

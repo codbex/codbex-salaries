@@ -1590,7 +1590,6 @@ components:
         - Employee
         - Currency
         - SalaryStatus
-        - JobPosition
       properties:
         Id:
           type: integer

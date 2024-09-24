@@ -6,38 +6,23 @@ export const trigger = (event) => {
     const SalaryItemDao = new SalaryItemRepository();
     const SalaryDao = new SalaryRepository();
 
-    const operation = event.operation;
-    const salary = event.entity;
+    const salaryItem = event.entity;
 
-    if (operation === "create") {
-
-        const salaryItems = SalaryItemDao.findAll({
-            $filter: {
-                equals: {
-                    Salary: salary.Id
-                }
+    const salary = SalaryDao.findAll({
+        $filter: {
+            equals: {
+                Id: salaryItem.Salary
             }
-        });
+        }
+    });
 
-        console.log(JSON.stringify(salaryItems));
+    console.log(JSON.stringify(salary[0]));
 
-        let gross = 0;
-        let net = 0;
+    salary[0].Gross += salaryItem.Quantity;
+    salary[0].Net += salaryItem.Amount;
 
-        salaryItems.forEach(function (value) {
-            gross += value.Quantity;
-            net += value.Amount;
-        });
+    console.log(salary[0]);
 
-        console.log(net);
-        console.log(gross);
-
-        salary.Net = net;
-        salary.Gross = gross;
-
-        console.log(salary);
-
-        SalaryDao.create(salary);
-    }
+    SalaryDao.update(salary[0]);
 
 }
