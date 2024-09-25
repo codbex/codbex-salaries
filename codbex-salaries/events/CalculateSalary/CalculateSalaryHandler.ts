@@ -17,11 +17,15 @@ export const trigger = (event) => {
     });
 
     console.log(JSON.stringify(salary[0]));
+    console.log(JSON.stringify(salaryItem));
+
+    console.log(salary[0].Net);
+    console.log(salary[0].Gross);
 
     salary[0].Gross += salaryItem.Quantity;
     salary[0].Net += salaryItem.Amount;
 
-    console.log(salary[0]);
+    console.log(JSON.stringify(salary[0]));
 
     SalaryDao.update(salary[0]);
 

@@ -83,34 +83,40 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
+                        "dataDefaultValue": "0.0",
                         "dataName": "SALARY_GROSS",
                         "dataNullable": "true",
                         "dataType": "DOUBLE",
+                        "isCalculatedProperty": "true",
                         "name": "Gross",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "NUMBER"
                     },
                     {
+                        "dataDefaultValue": "0.0",
                         "dataName": "SALARY_NET",
                         "dataNullable": "true",
                         "dataType": "DOUBLE",
+                        "isCalculatedProperty": "true",
                         "name": "Net",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "NUMBER"
                     },
                     {
+                        "dataDefaultValue": "0.0",
                         "dataName": "SALARY_TOTAL",
                         "dataNullable": "true",
                         "dataType": "DOUBLE",
+                        "isCalculatedProperty": "true",
                         "name": "Total",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "NUMBER"
                     }
                 ],
                 "caption": "Manage entity Salary",

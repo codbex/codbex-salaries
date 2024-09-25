@@ -1609,12 +1609,15 @@ components:
         Gross:
           type: number
           format: double
+          readOnly: true
         Net:
           type: number
           format: double
+          readOnly: true
         Total:
           type: number
           format: double
+          readOnly: true
     SalaryFilterOptions:
       type: object
       properties:
