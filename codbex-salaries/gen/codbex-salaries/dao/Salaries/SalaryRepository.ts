@@ -187,13 +187,13 @@ export class SalaryRepository {
 
     public create(entity: SalaryCreateEntity): number {
         if (entity.Gross === undefined || entity.Gross === null) {
-            (entity as SalaryEntity).Gross = 0.0;
+            (entity as SalaryEntity).Gross = 0;
         }
         if (entity.Net === undefined || entity.Net === null) {
-            (entity as SalaryEntity).Net = 0.0;
+            (entity as SalaryEntity).Net = 0;
         }
         if (entity.Total === undefined || entity.Total === null) {
-            (entity as SalaryEntity).Total = 0.0;
+            (entity as SalaryEntity).Total = 0;
         }
         const id = this.dao.insert(entity);
         this.triggerEvent({
