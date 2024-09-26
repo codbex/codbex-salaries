@@ -14,7 +14,10 @@ export const trigger = (event) => {
         }
     });
 
-    salary[0].Gross += salaryItem.Quantity;
+    if (salaryItem.Direction === 1) {
+        salary[0].Gross += salaryItem.Quantity;
+    }
+
     salary[0].Net += salaryItem.Amount;
 
     SalaryDao.update(salary[0]);
