@@ -1,27 +1,27 @@
 {
-    "expression": "0/10 * * * * ?",
+    "expression": "* * * * * ?",
     "group": "defined",
     "handler": "codbex-salaries/scheduled-jobs/GenerateSalaries/generate-salaries-handler.mjs",
     "description": "Scheduled Job For Generating Salaries",
     "parameters": [
         {
-            "name": "Id",
+            "name": "id",
             "type": "number"
         },
         {
-            "name": "Employee",
+            "name": "employee",
             "type": "number"
         },
         {
-            "name": "Currency",
+            "name": "currency",
             "type": "number"
         },
         {
-            "name": "SalaryStatus",
+            "name": "salaryStatus",
             "type": "number"
         },
         {
-            "name": "JopPosition",
+            "name": "jobPosition",
             "type": "number"
         }
     ]

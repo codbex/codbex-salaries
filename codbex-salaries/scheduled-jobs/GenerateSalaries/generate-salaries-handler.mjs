@@ -30,18 +30,14 @@ employeeAssignments.forEach((assignment) => {
         }
     });
 
-
-
     const salaryCount = SalaryDao.count();
 
-    console.log("ee" + salaryCount);
-
     const salary = {
-        "Id": salaryCount + 1,
-        "Employee": employee[0].Id,
-        "Currency": 30,
-        "SalaryStatus": 1,
-        "JobPosition": jobAssignment[0].JobPosition
+        "id": salaryCount + 1,
+        "employee": employee[0].Id,
+        "currency": 30,
+        "salaryStatus": 1,
+        "jobPosition": jobAssignment[0].JobPosition
     }
 
     GenerateSalariesService.saveSalaries(salary);
