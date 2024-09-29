@@ -1,0 +1,28 @@
+{
+    "expression": "0/10 * * * * ?",
+    "group": "defined",
+    "handler": "codbex-salaries/scheduled-jobs/GenerateSalaries/generate-salaries-handler.mjs",
+    "description": "Scheduled Job For Generating Salaries",
+    "parameters": [
+        {
+            "name": "Id",
+            "type": "number"
+        },
+        {
+            "name": "Employee",
+            "type": "number"
+        },
+        {
+            "name": "Currency",
+            "type": "number"
+        },
+        {
+            "name": "SalaryStatus",
+            "type": "number"
+        },
+        {
+            "name": "JopPosition",
+            "type": "number"
+        }
+    ]
+}
