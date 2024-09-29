@@ -1,4 +1,4 @@
-import { Logger } from './Logger';
+import { GenerateSalariesService } from './GenerateSalariesService';
 import { EmployeeAssignmentRepository } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeAssignmentRepository";
 import { EmployeeRepository } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeRepository";
 import { JobAssignmentRepository } from "codbex-jobs/gen/codbex-jobs/dao/JobAssignment/JobAssignmentRepository";
@@ -44,8 +44,6 @@ employeeAssignments.forEach((assignment) => {
         "JobPosition": jobAssignment[0].JobPosition
     }
 
-    // console.log(JSON.stringify(salary));
-
-    Logger.saveSalaries(salary);
+    GenerateSalariesService.saveSalaries(salary);
 });
 
