@@ -1,6 +1,0 @@
-{
-    "expression": "0 0 1 * * ?",
-    "group": "defined",
-    "handler": "codbex-salaries/scheduled-jobs/GenerateSalaries/generate-salaries-handler.mjs",
-    "description": "Scheduled Job For Generating Salaries"
-}

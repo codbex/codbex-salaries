@@ -28,9 +28,19 @@
                         "name": "SALARY_SALARYSTATUS"
                     },
                     {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "SALARY_STARTDATE"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "SALARY_ENDDATE"
+                    },
+                    {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "SALARY_JOBPOSITION"
+                        "name": "SALARY_JOBROLE"
                     },
                     {
                         "type": "DOUBLE",
@@ -43,12 +53,6 @@
                         "defaultValue": "0",
                         "nullable": true,
                         "name": "SALARY_NET"
-                    },
-                    {
-                        "type": "DOUBLE",
-                        "defaultValue": "0",
-                        "nullable": true,
-                        "name": "SALARY_TOTAL"
                     }
                 ]
             },
@@ -150,13 +154,13 @@
                 "referencedColumns": "SALARYSTATUS_ID"
             },
             {
-                "name": "Salary_JobPosition",
+                "name": "Salary_JobRole",
                 "type": "foreignKey",
                 "table": "CODBEX_SALARY",
-                "constraintName": "Salary_JobPosition",
-                "columns": "SALARY_JOBPOSITION",
-                "referencedTable": "CODBEX_JOBPOSITION",
-                "referencedColumns": "JOBPOSITION_ID"
+                "constraintName": "Salary_JobRole",
+                "columns": "SALARY_JOBROLE",
+                "referencedTable": "CODBEX_JOBROLE",
+                "referencedColumns": "COMPANYROLE_ID"
             },
             {
                 "name": "SalaryItem_Salary",

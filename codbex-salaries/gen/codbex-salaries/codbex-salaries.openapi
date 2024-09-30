@@ -1590,6 +1590,8 @@ components:
         - Employee
         - Currency
         - SalaryStatus
+        - StartDate
+        - JobRole
       properties:
         Id:
           type: integer
@@ -1603,7 +1605,9 @@ components:
         SalaryStatus:
           type: integer
           format: int32
-        JobPosition:
+        StartDate:
+        EndDate:
+        JobRole:
           type: integer
           format: int32
         Gross:
@@ -1611,10 +1615,6 @@ components:
           format: double
           readOnly: true
         Net:
-          type: number
-          format: double
-          readOnly: true
-        Total:
           type: number
           format: double
           readOnly: true
@@ -1659,7 +1659,11 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobPosition:
+                StartDate:
+                  oneOf:
+                EndDate:
+                  oneOf:
+                JobRole:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1676,14 +1680,6 @@ components:
                         type: number
                         format: double
                 Net:
-                  oneOf:
-                    - type: number
-                      format: double
-                    - type: array
-                      items:
-                        type: number
-                        format: double
-                Total:
                   oneOf:
                     - type: number
                       format: double
@@ -1726,7 +1722,11 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobPosition:
+                StartDate:
+                  oneOf:
+                EndDate:
+                  oneOf:
+                JobRole:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1750,14 +1750,6 @@ components:
                       items:
                         type: number
                         format: double
-                Total:
-                  oneOf:
-                    - type: number
-                      format: double
-                    - type: array
-                      items:
-                        type: number
-                        format: double
             contains:
               type: object
               properties:
@@ -1765,10 +1757,11 @@ components:
                 Employee:
                 Currency:
                 SalaryStatus:
-                JobPosition:
+                StartDate:
+                EndDate:
+                JobRole:
                 Gross:
                 Net:
-                Total:
             greaterThan:
               type: object
               properties:
@@ -1784,16 +1777,15 @@ components:
                 SalaryStatus:
                   type: integer
                   format: int32
-                JobPosition:
+                StartDate:
+                EndDate:
+                JobRole:
                   type: integer
                   format: int32
                 Gross:
                   type: number
                   format: double
                 Net:
-                  type: number
-                  format: double
-                Total:
                   type: number
                   format: double
             greaterThanOrEqual:
@@ -1811,16 +1803,15 @@ components:
                 SalaryStatus:
                   type: integer
                   format: int32
-                JobPosition:
+                StartDate:
+                EndDate:
+                JobRole:
                   type: integer
                   format: int32
                 Gross:
                   type: number
                   format: double
                 Net:
-                  type: number
-                  format: double
-                Total:
                   type: number
                   format: double
             lessThan:
@@ -1838,16 +1829,15 @@ components:
                 SalaryStatus:
                   type: integer
                   format: int32
-                JobPosition:
+                StartDate:
+                EndDate:
+                JobRole:
                   type: integer
                   format: int32
                 Gross:
                   type: number
                   format: double
                 Net:
-                  type: number
-                  format: double
-                Total:
                   type: number
                   format: double
             lessThanOrEqual:
@@ -1865,7 +1855,9 @@ components:
                 SalaryStatus:
                   type: integer
                   format: int32
-                JobPosition:
+                StartDate:
+                EndDate:
+                JobRole:
                   type: integer
                   format: int32
                 Gross:
@@ -1874,17 +1866,14 @@ components:
                 Net:
                   type: number
                   format: double
-                Total:
-                  type: number
-                  format: double
         $select:
           type: array
-          example: ["Id", "Employee", "Currency", "SalaryStatus", "JobPosition", "Gross", "Net", "Total"]
+          example: ["Id", "Employee", "Currency", "SalaryStatus", "StartDate", "EndDate", "JobRole", "Gross", "Net"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,Currency,SalaryStatus,JobPosition,Gross,Net,Total"
+            example: "Id,Employee,Currency,SalaryStatus,StartDate,EndDate,JobRole,Gross,Net"
         $order:
           type: string
           enum: ["asc", "desc"]

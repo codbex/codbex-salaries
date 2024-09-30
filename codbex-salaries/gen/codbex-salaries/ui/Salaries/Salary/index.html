@@ -52,10 +52,11 @@
 							<fd-list-byline dg-align="left">
 								{{optionsCurrencyValue(next.Currency)}} |
 								{{optionsSalaryStatusValue(next.SalaryStatus)}} |
-								{{optionsJobPositionValue(next.JobPosition)}} |
+								{{next.StartDate | date: "dd/MMM/yyyy"}} |
+								{{next.EndDate | date: "dd/MMM/yyyy"}} |
+								{{optionsJobRoleValue(next.JobRole)}} |
 								{{next.Gross}} |
-								{{next.Net}} |
-								{{next.Total}}
+								{{next.Net}}
 							</fd-list-byline>
 						</fd-list-content>
 					</fd-list-link>

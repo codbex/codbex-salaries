@@ -11,13 +11,25 @@ angular.module('page', ["ideUI", "ideView"])
 
 		let params = ViewParameters.get();
 		if (Object.keys(params).length) {
+			if (params?.entity?.StartDateFrom) {
+				params.entity.StartDateFrom = new Date(params.entity.StartDateFrom);
+			}
+			if (params?.entity?.StartDateTo) {
+				params.entity.StartDateTo = new Date(params.entity.StartDateTo);
+			}
+			if (params?.entity?.EndDateFrom) {
+				params.entity.EndDateFrom = new Date(params.entity.EndDateFrom);
+			}
+			if (params?.entity?.EndDateTo) {
+				params.entity.EndDateTo = new Date(params.entity.EndDateTo);
+			}
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
 			$scope.optionsEmployee = params.optionsEmployee;
 			$scope.optionsCurrency = params.optionsCurrency;
 			$scope.optionsSalaryStatus = params.optionsSalaryStatus;
-			$scope.optionsJobPosition = params.optionsJobPosition;
+			$scope.optionsJobRole = params.optionsJobRole;
 		}
 
 		$scope.filter = function () {
@@ -52,17 +64,26 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.SalaryStatus !== undefined) {
 				filter.$filter.equals.SalaryStatus = entity.SalaryStatus;
 			}
-			if (entity.JobPosition !== undefined) {
-				filter.$filter.equals.JobPosition = entity.JobPosition;
+			if (entity.StartDateFrom) {
+				filter.$filter.greaterThanOrEqual.StartDate = entity.StartDateFrom;
+			}
+			if (entity.StartDateTo) {
+				filter.$filter.lessThanOrEqual.StartDate = entity.StartDateTo;
+			}
+			if (entity.EndDateFrom) {
+				filter.$filter.greaterThanOrEqual.EndDate = entity.EndDateFrom;
+			}
+			if (entity.EndDateTo) {
+				filter.$filter.lessThanOrEqual.EndDate = entity.EndDateTo;
+			}
+			if (entity.JobRole !== undefined) {
+				filter.$filter.equals.JobRole = entity.JobRole;
 			}
 			if (entity.Gross !== undefined) {
 				filter.$filter.equals.Gross = entity.Gross;
 			}
 			if (entity.Net !== undefined) {
 				filter.$filter.equals.Net = entity.Net;
-			}
-			if (entity.Total !== undefined) {
-				filter.$filter.equals.Total = entity.Total;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

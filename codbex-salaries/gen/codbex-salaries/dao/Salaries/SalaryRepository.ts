@@ -2,23 +2,27 @@ import { query } from "sdk/db";
 import { producer } from "sdk/messaging";
 import { extensions } from "sdk/extensions";
 import { dao as daoApi } from "sdk/db";
+import { EntityUtils } from "../utils/EntityUtils";
 
 export interface SalaryEntity {
     readonly Id: number;
     Employee?: number;
     Currency?: number;
     SalaryStatus?: number;
-    JobPosition?: number;
+    StartDate?: Date;
+    EndDate?: Date;
+    JobRole?: number;
     Gross?: number;
     Net?: number;
-    Total?: number;
 }
 
 export interface SalaryCreateEntity {
     readonly Employee?: number;
     readonly Currency?: number;
     readonly SalaryStatus?: number;
-    readonly JobPosition?: number;
+    readonly StartDate?: Date;
+    readonly EndDate?: Date;
+    readonly JobRole?: number;
 }
 
 export interface SalaryUpdateEntity extends SalaryCreateEntity {
@@ -32,70 +36,77 @@ export interface SalaryEntityOptions {
             Employee?: number | number[];
             Currency?: number | number[];
             SalaryStatus?: number | number[];
-            JobPosition?: number | number[];
+            StartDate?: Date | Date[];
+            EndDate?: Date | Date[];
+            JobRole?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
-            Total?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
             Employee?: number | number[];
             Currency?: number | number[];
             SalaryStatus?: number | number[];
-            JobPosition?: number | number[];
+            StartDate?: Date | Date[];
+            EndDate?: Date | Date[];
+            JobRole?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
-            Total?: number | number[];
         };
         contains?: {
             Id?: number;
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
-            JobPosition?: number;
+            StartDate?: Date;
+            EndDate?: Date;
+            JobRole?: number;
             Gross?: number;
             Net?: number;
-            Total?: number;
         };
         greaterThan?: {
             Id?: number;
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
-            JobPosition?: number;
+            StartDate?: Date;
+            EndDate?: Date;
+            JobRole?: number;
             Gross?: number;
             Net?: number;
-            Total?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
-            JobPosition?: number;
+            StartDate?: Date;
+            EndDate?: Date;
+            JobRole?: number;
             Gross?: number;
             Net?: number;
-            Total?: number;
         };
         lessThan?: {
             Id?: number;
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
-            JobPosition?: number;
+            StartDate?: Date;
+            EndDate?: Date;
+            JobRole?: number;
             Gross?: number;
             Net?: number;
-            Total?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
-            JobPosition?: number;
+            StartDate?: Date;
+            EndDate?: Date;
+            JobRole?: number;
             Gross?: number;
             Net?: number;
-            Total?: number;
         };
     },
     $select?: (keyof SalaryEntity)[],
@@ -148,8 +159,18 @@ export class SalaryRepository {
                 type: "INTEGER",
             },
             {
-                name: "JobPosition",
-                column: "SALARY_JOBPOSITION",
+                name: "StartDate",
+                column: "SALARY_STARTDATE",
+                type: "DATE",
+            },
+            {
+                name: "EndDate",
+                column: "SALARY_ENDDATE",
+                type: "DATE",
+            },
+            {
+                name: "JobRole",
+                column: "SALARY_JOBROLE",
                 type: "INTEGER",
             },
             {
@@ -160,11 +181,6 @@ export class SalaryRepository {
             {
                 name: "Net",
                 column: "SALARY_NET",
-                type: "DOUBLE",
-            },
-            {
-                name: "Total",
-                column: "SALARY_TOTAL",
                 type: "DOUBLE",
             }
         ]
@@ -177,23 +193,28 @@ export class SalaryRepository {
     }
 
     public findAll(options?: SalaryEntityOptions): SalaryEntity[] {
-        return this.dao.list(options);
+        return this.dao.list(options).map((e: SalaryEntity) => {
+            EntityUtils.setDate(e, "StartDate");
+            EntityUtils.setDate(e, "EndDate");
+            return e;
+        });
     }
 
     public findById(id: number): SalaryEntity | undefined {
         const entity = this.dao.find(id);
+        EntityUtils.setDate(entity, "StartDate");
+        EntityUtils.setDate(entity, "EndDate");
         return entity ?? undefined;
     }
 
     public create(entity: SalaryCreateEntity): number {
+        EntityUtils.setLocalDate(entity, "StartDate");
+        EntityUtils.setLocalDate(entity, "EndDate");
         if (entity.Gross === undefined || entity.Gross === null) {
             (entity as SalaryEntity).Gross = 0;
         }
         if (entity.Net === undefined || entity.Net === null) {
             (entity as SalaryEntity).Net = 0;
-        }
-        if (entity.Total === undefined || entity.Total === null) {
-            (entity as SalaryEntity).Total = 0;
         }
         const id = this.dao.insert(entity);
         this.triggerEvent({
@@ -210,6 +231,8 @@ export class SalaryRepository {
     }
 
     public update(entity: SalaryUpdateEntity): void {
+        // EntityUtils.setLocalDate(entity, "StartDate");
+        // EntityUtils.setLocalDate(entity, "EndDate");
         const previousEntity = this.findById(entity.Id);
         this.dao.update(entity);
         this.triggerEvent({

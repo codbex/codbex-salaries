@@ -43,18 +43,24 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.optionsEmployee = [];
 				$scope.optionsCurrency = [];
 				$scope.optionsSalaryStatus = [];
-				$scope.optionsJobPosition = [];
+				$scope.optionsJobRole = [];
 				$scope.action = 'select';
 			});
 		});
 
 		messageHub.onDidReceiveMessage("entitySelected", function (msg) {
 			$scope.$apply(function () {
+				if (msg.data.entity.StartDate) {
+					msg.data.entity.StartDate = new Date(msg.data.entity.StartDate);
+				}
+				if (msg.data.entity.EndDate) {
+					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
+				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
 				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsJobRole = msg.data.optionsJobRole;
 				$scope.action = 'select';
 			});
 		});
@@ -65,18 +71,24 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
 				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsJobRole = msg.data.optionsJobRole;
 				$scope.action = 'create';
 			});
 		});
 
 		messageHub.onDidReceiveMessage("updateEntity", function (msg) {
 			$scope.$apply(function () {
+				if (msg.data.entity.StartDate) {
+					msg.data.entity.StartDate = new Date(msg.data.entity.StartDate);
+				}
+				if (msg.data.entity.EndDate) {
+					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
+				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
 				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsJobRole = msg.data.optionsJobRole;
 				$scope.action = 'update';
 			});
 		});
