@@ -21,5 +21,4 @@ export const trigger = (event) => {
     salary[0].Net += salaryItem.Amount;
 
     SalaryDao.update(salary[0]);
-
 }
