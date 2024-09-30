@@ -28,6 +28,11 @@
                         "name": "SALARY_SALARYSTATUS"
                     },
                     {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_JOBROLE"
+                    },
+                    {
                         "type": "DATE",
                         "nullable": true,
                         "name": "SALARY_STARTDATE"
@@ -36,11 +41,6 @@
                         "type": "DATE",
                         "nullable": true,
                         "name": "SALARY_ENDDATE"
-                    },
-                    {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "SALARY_JOBROLE"
                     },
                     {
                         "type": "DOUBLE",
@@ -160,7 +160,7 @@
                 "constraintName": "Salary_JobRole",
                 "columns": "SALARY_JOBROLE",
                 "referencedTable": "CODBEX_JOBROLE",
-                "referencedColumns": "COMPANYROLE_ID"
+                "referencedColumns": "JOBROLE_ID"
             },
             {
                 "name": "SalaryItem_Salary",

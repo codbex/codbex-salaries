@@ -9,9 +9,9 @@ export interface SalaryEntity {
     Employee?: number;
     Currency?: number;
     SalaryStatus?: number;
+    JobRole?: number;
     StartDate?: Date;
     EndDate?: Date;
-    JobRole?: number;
     Gross?: number;
     Net?: number;
 }
@@ -20,9 +20,9 @@ export interface SalaryCreateEntity {
     readonly Employee?: number;
     readonly Currency?: number;
     readonly SalaryStatus?: number;
+    readonly JobRole?: number;
     readonly StartDate?: Date;
     readonly EndDate?: Date;
-    readonly JobRole?: number;
 }
 
 export interface SalaryUpdateEntity extends SalaryCreateEntity {
@@ -36,9 +36,9 @@ export interface SalaryEntityOptions {
             Employee?: number | number[];
             Currency?: number | number[];
             SalaryStatus?: number | number[];
+            JobRole?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
-            JobRole?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
         };
@@ -47,9 +47,9 @@ export interface SalaryEntityOptions {
             Employee?: number | number[];
             Currency?: number | number[];
             SalaryStatus?: number | number[];
+            JobRole?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
-            JobRole?: number | number[];
             Gross?: number | number[];
             Net?: number | number[];
         };
@@ -58,9 +58,9 @@ export interface SalaryEntityOptions {
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
+            JobRole?: number;
             StartDate?: Date;
             EndDate?: Date;
-            JobRole?: number;
             Gross?: number;
             Net?: number;
         };
@@ -69,9 +69,9 @@ export interface SalaryEntityOptions {
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
+            JobRole?: number;
             StartDate?: Date;
             EndDate?: Date;
-            JobRole?: number;
             Gross?: number;
             Net?: number;
         };
@@ -80,9 +80,9 @@ export interface SalaryEntityOptions {
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
+            JobRole?: number;
             StartDate?: Date;
             EndDate?: Date;
-            JobRole?: number;
             Gross?: number;
             Net?: number;
         };
@@ -91,9 +91,9 @@ export interface SalaryEntityOptions {
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
+            JobRole?: number;
             StartDate?: Date;
             EndDate?: Date;
-            JobRole?: number;
             Gross?: number;
             Net?: number;
         };
@@ -102,9 +102,9 @@ export interface SalaryEntityOptions {
             Employee?: number;
             Currency?: number;
             SalaryStatus?: number;
+            JobRole?: number;
             StartDate?: Date;
             EndDate?: Date;
-            JobRole?: number;
             Gross?: number;
             Net?: number;
         };
@@ -159,6 +159,11 @@ export class SalaryRepository {
                 type: "INTEGER",
             },
             {
+                name: "JobRole",
+                column: "SALARY_JOBROLE",
+                type: "INTEGER",
+            },
+            {
                 name: "StartDate",
                 column: "SALARY_STARTDATE",
                 type: "DATE",
@@ -167,11 +172,6 @@ export class SalaryRepository {
                 name: "EndDate",
                 column: "SALARY_ENDDATE",
                 type: "DATE",
-            },
-            {
-                name: "JobRole",
-                column: "SALARY_JOBROLE",
-                type: "INTEGER",
             },
             {
                 name: "Gross",

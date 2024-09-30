@@ -67,6 +67,23 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
+                        "dataName": "SALARY_JOBROLE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "isRequiredProperty": "true",
+                        "name": "JobRole",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Name",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "DROPDOWN",
+                        "relationshipName": "Salary_JobRole",
+                        "relationshipEntityName": "JobRole",
+                        "relationshipEntityPerspectiveName": "Companies",
+                        "relationshipEntityPerspectiveLabel": "Companies"
+                    },
+                    {
                         "dataName": "SALARY_STARTDATE",
                         "dataNullable": "true",
                         "dataType": "DATE",
@@ -86,23 +103,6 @@
                         "widgetLength": "20",
                         "widgetSize": "",
                         "widgetType": "DATE"
-                    },
-                    {
-                        "dataName": "SALARY_JOBROLE",
-                        "dataNullable": "true",
-                        "dataType": "INTEGER",
-                        "isRequiredProperty": "true",
-                        "name": "JobRole",
-                        "widgetDropDownKey": "Id",
-                        "widgetDropDownValue": "Name",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "DROPDOWN",
-                        "relationshipName": "Salary_JobRole",
-                        "relationshipEntityName": "JobRole",
-                        "relationshipEntityPerspectiveName": "Companies",
-                        "relationshipEntityPerspectiveLabel": "Companies"
                     },
                     {
                         "dataDefaultValue": "0",
@@ -592,7 +592,7 @@
                 "properties": [
                     {
                         "dataAutoIncrement": "true",
-                        "dataName": "COMPANYROLE_ID",
+                        "dataName": "JOBROLE_ID",
                         "dataNullable": "true",
                         "dataPrimaryKey": "true",
                         "dataType": "INTEGER",
@@ -603,18 +603,19 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataLength": "20",
-                        "dataName": "COMPANYROLE_NAME",
+                        "dataLength": "50",
+                        "dataName": "JOBROLE_NAME",
                         "dataNullable": "true",
                         "dataType": "VARCHAR",
+                        "isRequiredProperty": "true",
                         "name": "Name",
                         "widgetIsMajor": "true",
-                        "widgetLength": "20",
+                        "widgetLength": "50",
                         "widgetSize": "",
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataName": "COMPANYROLE_COMPANY",
+                        "dataName": "JOBROLE_COMPANY",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
                         "name": "Company",
@@ -647,7 +648,7 @@
                 "perspectiveOrder": "113",
                 "perspectiveRole": "",
                 "projectionReferencedEntity": "JobRole",
-                "projectionReferencedModel": "/workspace/codbex-jobs/codbex-jobs.model",
+                "projectionReferencedModel": "/workspace/codbex-companies/codbex-companies.model",
                 "title": "JobRole",
                 "tooltip": "JobRole",
                 "type": "PROJECTION"

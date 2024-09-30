@@ -64,6 +64,9 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.SalaryStatus !== undefined) {
 				filter.$filter.equals.SalaryStatus = entity.SalaryStatus;
 			}
+			if (entity.JobRole !== undefined) {
+				filter.$filter.equals.JobRole = entity.JobRole;
+			}
 			if (entity.StartDateFrom) {
 				filter.$filter.greaterThanOrEqual.StartDate = entity.StartDateFrom;
 			}
@@ -75,9 +78,6 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.EndDateTo) {
 				filter.$filter.lessThanOrEqual.EndDate = entity.EndDateTo;
-			}
-			if (entity.JobRole !== undefined) {
-				filter.$filter.equals.JobRole = entity.JobRole;
 			}
 			if (entity.Gross !== undefined) {
 				filter.$filter.equals.Gross = entity.Gross;

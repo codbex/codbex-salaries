@@ -128,11 +128,11 @@ class SalaryService {
         if (entity.SalaryStatus === null || entity.SalaryStatus === undefined) {
             throw new ValidationError(`The 'SalaryStatus' property is required, provide a valid value`);
         }
-        if (entity.StartDate === null || entity.StartDate === undefined) {
-            throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
-        }
         if (entity.JobRole === null || entity.JobRole === undefined) {
             throw new ValidationError(`The 'JobRole' property is required, provide a valid value`);
+        }
+        if (entity.StartDate === null || entity.StartDate === undefined) {
+            throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
         }
         for (const next of validationModules) {
             next.validate(entity);

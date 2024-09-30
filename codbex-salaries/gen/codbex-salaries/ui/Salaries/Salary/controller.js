@@ -227,7 +227,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
-		$http.get("/services/ts/codbex-jobs/gen/codbex-jobs/api/Companies/JobRoleService.ts").then(function (response) {
+		$http.get("/services/ts/codbex-companies/gen/codbex-companies/api/Companies/JobRoleService.ts").then(function (response) {
 			$scope.optionsJobRole = response.data.map(e => {
 				return {
 					value: e.Id,
