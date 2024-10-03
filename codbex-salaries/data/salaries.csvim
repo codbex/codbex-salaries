@@ -3,7 +3,7 @@
     {
       "table": "CODBEX_SALARYITEMDIRECTION",
       "schema": "PUBLIC",
-      "file": "/codbex-salaries-data/salary-item-direction.csv",
+      "file": "/codbex-salaries/data/salary-item-direction.csv",
       "header": true,
       "useHeaderNames": true,
       "delimField": ",",
@@ -14,7 +14,7 @@
     {
       "table": "CODBEX_SALARYSTATUS",
       "schema": "PUBLIC",
-      "file": "/codbex-salaries-data/salary-statuses.csv",
+      "file": "/codbex-salaries/data/salary-statuses.csv",
       "header": true,
       "useHeaderNames": true,
       "delimField": ",",
