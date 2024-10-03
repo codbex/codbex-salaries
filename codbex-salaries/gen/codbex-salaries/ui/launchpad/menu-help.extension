@@ -1,0 +1,5 @@
+{
+    "module": "codbex-salaries/gen/codbex-salaries/ui/launchpad/menu-help.js",
+    "extensionPoint": "codbex-salaries-menu",
+    "description": "codbex-salaries - Application Menu"
+}

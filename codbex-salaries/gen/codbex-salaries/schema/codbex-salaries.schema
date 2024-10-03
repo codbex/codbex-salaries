@@ -1,0 +1,186 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "CODBEX_SALARY",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "SALARY_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_EMPLOYEE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_CURRENCY"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_SALARYSTATUS"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARY_JOBROLE"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "SALARY_STARTDATE"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "SALARY_ENDDATE"
+                    },
+                    {
+                        "type": "DOUBLE",
+                        "defaultValue": "0",
+                        "nullable": true,
+                        "name": "SALARY_GROSS"
+                    },
+                    {
+                        "type": "DOUBLE",
+                        "defaultValue": "0",
+                        "nullable": true,
+                        "name": "SALARY_NET"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_SALARYITEM",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "SALARYITEM_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARYITEM_SALARY"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 2000,
+                        "nullable": true,
+                        "name": "SALARYITEM_NAME"
+                    },
+                    {
+                        "type": "DOUBLE",
+                        "nullable": true,
+                        "name": "SALARYITEM_QUANTITY"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "SALARYITEM_DIRECTION"
+                    },
+                    {
+                        "type": "DOUBLE",
+                        "nullable": true,
+                        "name": "SALARYITEM_AMOUNT"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_SALARYSTATUS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "SALARYSTATUS_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "SALARYSTATUS_NAME"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_SALARYITEMDIRECTION",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "nullable": true,
+                        "name": "SALARYITEMDIRECTION_DIRECTION"
+                    }
+                ]
+            },
+            {
+                "name": "Salary_Employee",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_Employee",
+                "columns": "SALARY_EMPLOYEE",
+                "referencedTable": "CODBEX_EMPLOYEE",
+                "referencedColumns": "EMPLOYEE_ID"
+            },
+            {
+                "name": "Salary_Currency",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_Currency",
+                "columns": "SALARY_CURRENCY",
+                "referencedTable": "CODBEX_CURRENCY",
+                "referencedColumns": "CURRENCY_ID"
+            },
+            {
+                "name": "Salary_SalaryStatus",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_SalaryStatus",
+                "columns": "SALARY_SALARYSTATUS",
+                "referencedTable": "CODBEX_SALARYSTATUS",
+                "referencedColumns": "SALARYSTATUS_ID"
+            },
+            {
+                "name": "Salary_JobRole",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARY",
+                "constraintName": "Salary_JobRole",
+                "columns": "SALARY_JOBROLE",
+                "referencedTable": "CODBEX_JOBROLE",
+                "referencedColumns": "JOBROLE_ID"
+            },
+            {
+                "name": "SalaryItem_Salary",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARYITEM",
+                "constraintName": "SalaryItem_Salary",
+                "columns": "SALARYITEM_SALARY",
+                "referencedTable": "CODBEX_SALARY",
+                "referencedColumns": "SALARY_ID"
+            },
+            {
+                "name": "SalaryItem_SalaryItemDirection",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARYITEM",
+                "constraintName": "SalaryItem_SalaryItemDirection",
+                "columns": "SALARYITEM_DIRECTION",
+                "referencedTable": "CODBEX_SALARYITEMDIRECTION",
+                "referencedColumns": "SALARYITEMDIRECTION_DIRECTION"
+            }
+        ]
+    },
+    "datasource": "DefaultDB"
+}
