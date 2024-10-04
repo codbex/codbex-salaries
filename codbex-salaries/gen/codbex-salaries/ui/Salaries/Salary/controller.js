@@ -204,7 +204,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.optionsEmployee = response.data.map(e => {
 				return {
 					value: e.Id,
-					text: e.FirstName
+					text: e.Name
 				}
 			});
 		});
