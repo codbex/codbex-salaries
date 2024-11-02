@@ -42,8 +42,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.entity = {};
 				$scope.optionsEmployee = [];
 				$scope.optionsCurrency = [];
-				$scope.optionsSalaryStatus = [];
-				$scope.optionsJobRole = [];
+				$scope.optionsStatus = [];
+				$scope.optionsRole = [];
 				$scope.action = 'select';
 			});
 		});
@@ -59,8 +59,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
-				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobRole = msg.data.optionsJobRole;
+				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.optionsRole = msg.data.optionsRole;
 				$scope.action = 'select';
 			});
 		});
@@ -70,8 +70,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.entity = {};
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
-				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobRole = msg.data.optionsJobRole;
+				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.optionsRole = msg.data.optionsRole;
 				$scope.action = 'create';
 			});
 		});
@@ -87,8 +87,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
 				$scope.optionsCurrency = msg.data.optionsCurrency;
-				$scope.optionsSalaryStatus = msg.data.optionsSalaryStatus;
-				$scope.optionsJobRole = msg.data.optionsJobRole;
+				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.optionsRole = msg.data.optionsRole;
 				$scope.action = 'update';
 			});
 		});

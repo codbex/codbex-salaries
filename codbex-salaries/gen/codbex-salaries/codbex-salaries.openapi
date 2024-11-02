@@ -1589,8 +1589,8 @@ components:
       required:
         - Employee
         - Currency
-        - SalaryStatus
-        - JobRole
+        - Status
+        - Role
         - StartDate
       properties:
         Id:
@@ -1602,10 +1602,10 @@ components:
         Currency:
           type: integer
           format: int32
-        SalaryStatus:
+        Status:
           type: integer
           format: int32
-        JobRole:
+        Role:
           type: integer
           format: int32
         StartDate:
@@ -1651,7 +1651,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                SalaryStatus:
+                Status:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1659,7 +1659,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobRole:
+                Role:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1714,7 +1714,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                SalaryStatus:
+                Status:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1722,7 +1722,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobRole:
+                Role:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1756,8 +1756,8 @@ components:
                 Id:
                 Employee:
                 Currency:
-                SalaryStatus:
-                JobRole:
+                Status:
+                Role:
                 StartDate:
                 EndDate:
                 Gross:
@@ -1774,10 +1774,10 @@ components:
                 Currency:
                   type: integer
                   format: int32
-                SalaryStatus:
+                Status:
                   type: integer
                   format: int32
-                JobRole:
+                Role:
                   type: integer
                   format: int32
                 StartDate:
@@ -1800,10 +1800,10 @@ components:
                 Currency:
                   type: integer
                   format: int32
-                SalaryStatus:
+                Status:
                   type: integer
                   format: int32
-                JobRole:
+                Role:
                   type: integer
                   format: int32
                 StartDate:
@@ -1826,10 +1826,10 @@ components:
                 Currency:
                   type: integer
                   format: int32
-                SalaryStatus:
+                Status:
                   type: integer
                   format: int32
-                JobRole:
+                Role:
                   type: integer
                   format: int32
                 StartDate:
@@ -1852,10 +1852,10 @@ components:
                 Currency:
                   type: integer
                   format: int32
-                SalaryStatus:
+                Status:
                   type: integer
                   format: int32
-                JobRole:
+                Role:
                   type: integer
                   format: int32
                 StartDate:
@@ -1868,12 +1868,12 @@ components:
                   format: double
         $select:
           type: array
-          example: ["Id", "Employee", "Currency", "SalaryStatus", "JobRole", "StartDate", "EndDate", "Gross", "Net"]
+          example: ["Id", "Employee", "Currency", "Status", "Role", "StartDate", "EndDate", "Gross", "Net"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,Currency,SalaryStatus,JobRole,StartDate,EndDate,Gross,Net"
+            example: "Id,Employee,Currency,Status,Role,StartDate,EndDate,Gross,Net"
         $order:
           type: string
           enum: ["asc", "desc"]

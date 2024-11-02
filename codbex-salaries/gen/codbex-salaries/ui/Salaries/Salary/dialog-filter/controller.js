@@ -28,8 +28,8 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
 			$scope.optionsEmployee = params.optionsEmployee;
 			$scope.optionsCurrency = params.optionsCurrency;
-			$scope.optionsSalaryStatus = params.optionsSalaryStatus;
-			$scope.optionsJobRole = params.optionsJobRole;
+			$scope.optionsStatus = params.optionsStatus;
+			$scope.optionsRole = params.optionsRole;
 		}
 
 		$scope.filter = function () {
@@ -61,11 +61,11 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Currency !== undefined) {
 				filter.$filter.equals.Currency = entity.Currency;
 			}
-			if (entity.SalaryStatus !== undefined) {
-				filter.$filter.equals.SalaryStatus = entity.SalaryStatus;
+			if (entity.Status !== undefined) {
+				filter.$filter.equals.Status = entity.Status;
 			}
-			if (entity.JobRole !== undefined) {
-				filter.$filter.equals.JobRole = entity.JobRole;
+			if (entity.Role !== undefined) {
+				filter.$filter.equals.Role = entity.Role;
 			}
 			if (entity.StartDateFrom) {
 				filter.$filter.greaterThanOrEqual.StartDate = entity.StartDateFrom;
