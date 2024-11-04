@@ -125,11 +125,11 @@ class SalaryService {
         if (entity.Currency === null || entity.Currency === undefined) {
             throw new ValidationError(`The 'Currency' property is required, provide a valid value`);
         }
-        if (entity.SalaryStatus === null || entity.SalaryStatus === undefined) {
-            throw new ValidationError(`The 'SalaryStatus' property is required, provide a valid value`);
+        if (entity.Status === null || entity.Status === undefined) {
+            throw new ValidationError(`The 'Status' property is required, provide a valid value`);
         }
-        if (entity.JobRole === null || entity.JobRole === undefined) {
-            throw new ValidationError(`The 'JobRole' property is required, provide a valid value`);
+        if (entity.Role === null || entity.Role === undefined) {
+            throw new ValidationError(`The 'Role' property is required, provide a valid value`);
         }
         if (entity.StartDate === null || entity.StartDate === undefined) {
             throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);

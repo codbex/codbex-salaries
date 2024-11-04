@@ -25,12 +25,12 @@
                     {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "SALARY_SALARYSTATUS"
+                        "name": "SALARY_STATUS"
                     },
                     {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "SALARY_JOBROLE"
+                        "name": "SALARY_ROLE"
                     },
                     {
                         "type": "DATE",
@@ -149,7 +149,7 @@
                 "type": "foreignKey",
                 "table": "CODBEX_SALARY",
                 "constraintName": "Salary_SalaryStatus",
-                "columns": "SALARY_SALARYSTATUS",
+                "columns": "SALARY_STATUS",
                 "referencedTable": "CODBEX_SALARYSTATUS",
                 "referencedColumns": "SALARYSTATUS_ID"
             },
@@ -158,7 +158,7 @@
                 "type": "foreignKey",
                 "table": "CODBEX_SALARY",
                 "constraintName": "Salary_JobRole",
-                "columns": "SALARY_JOBROLE",
+                "columns": "SALARY_ROLE",
                 "referencedTable": "CODBEX_JOBROLE",
                 "referencedColumns": "JOBROLE_ID"
             },
