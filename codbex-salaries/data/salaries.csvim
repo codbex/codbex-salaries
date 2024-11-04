@@ -21,6 +21,17 @@
       "delimEnclosing": "\"",
       "distinguishEmptyFromNull": true,
       "version": ""
+    },
+    {
+      "table": "CODBEX_SALARYITEMTYPE",
+      "schema": "PUBLIC",
+      "file": "/codbex-salaries/data/salary-item-types.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": ""
     }
   ]
 }

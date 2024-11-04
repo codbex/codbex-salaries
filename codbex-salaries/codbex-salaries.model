@@ -321,17 +321,23 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
-                        "dataLength": "2000",
-                        "dataName": "SALARYITEM_NAME",
+                        "dataName": "SALARYITEM_TYPE",
                         "dataNullable": "true",
-                        "dataType": "VARCHAR",
+                        "dataType": "INTEGER",
                         "description": "",
-                        "name": "Name",
+                        "isRequiredProperty": "true",
+                        "name": "Type",
                         "tooltip": "",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Name",
                         "widgetIsMajor": "true",
-                        "widgetLength": "2000",
+                        "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "DROPDOWN",
+                        "relationshipName": "SalaryItem_SalaryItemType",
+                        "relationshipEntityName": "SalaryItemType",
+                        "relationshipEntityPerspectiveName": "entities",
+                        "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
                         "dataName": "SALARYITEM_QUANTITY",
@@ -748,6 +754,59 @@
                 "title": "Employee",
                 "tooltip": "Employee",
                 "type": "PROJECTION"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "SALARYITEMTYPE_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Id",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "200",
+                        "dataName": "SALARYITEMTYPE_NAME",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "description": "",
+                        "isRequiredProperty": "true",
+                        "name": "Name",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "200",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    }
+                ],
+                "caption": "Manage entity SalaryItemType",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}SALARYITEMTYPE\"",
+                "dataName": "SALARYITEMTYPE",
+                "dataQuery": "",
+                "description": "Manage entity SalaryItemType",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "salaryitemtype",
+                "menuLabel": "SalaryItemType",
+                "name": "SalaryItemType",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
+                "perspectiveLabel": "Entities",
+                "perspectiveName": "entities",
+                "perspectiveOrder": "100",
+                "perspectiveRole": "",
+                "title": "SalaryItemType",
+                "tooltip": "SalaryItemType",
+                "type": "PRIMARY"
             }
         ],
         "perspectives": [

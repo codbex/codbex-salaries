@@ -1,0 +1,8 @@
+SALARYITEMTYPE_ID,SALARYITEMTYPE_NAME
+1,Base Salary
+2,Bonus
+3,Personal Income Tax
+4,Pension Fund
+5,Health Insurance Fund
+6,Unemployment Fund
+7,Supplementary Mandatory Pension Insurance

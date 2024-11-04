@@ -73,10 +73,9 @@
                         "name": "SALARYITEM_SALARY"
                     },
                     {
-                        "type": "VARCHAR",
-                        "length": 2000,
+                        "type": "INTEGER",
                         "nullable": true,
-                        "name": "SALARYITEM_NAME"
+                        "name": "SALARYITEM_TYPE"
                     },
                     {
                         "type": "DOUBLE",
@@ -127,6 +126,25 @@
                 ]
             },
             {
+                "name": "CODBEX_SALARYITEMTYPE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "SALARYITEMTYPE_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 200,
+                        "nullable": true,
+                        "name": "SALARYITEMTYPE_NAME"
+                    }
+                ]
+            },
+            {
                 "name": "Salary_Employee",
                 "type": "foreignKey",
                 "table": "CODBEX_SALARY",
@@ -170,6 +188,15 @@
                 "columns": "SALARYITEM_SALARY",
                 "referencedTable": "CODBEX_SALARY",
                 "referencedColumns": "SALARY_ID"
+            },
+            {
+                "name": "SalaryItem_SalaryItemType",
+                "type": "foreignKey",
+                "table": "CODBEX_SALARYITEM",
+                "constraintName": "SalaryItem_SalaryItemType",
+                "columns": "SALARYITEM_TYPE",
+                "referencedTable": "CODBEX_SALARYITEMTYPE",
+                "referencedColumns": "SALARYITEMTYPE_ID"
             },
             {
                 "name": "SalaryItem_SalaryItemDirection",

@@ -24,6 +24,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.entity = params.entity;
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
+			$scope.optionsType = params.optionsType;
 			$scope.optionsDirection = params.optionsDirection;
 		}
 
@@ -55,6 +56,9 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				messageHub.showAlertSuccess("SalaryItem", "SalaryItem successfully updated");
 			});
 		};
+
+		$scope.serviceType = "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts";
+		$scope.serviceDirection = "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts";
 
 		$scope.cancel = function () {
 			$scope.entity = {};

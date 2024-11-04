@@ -1,6 +1,6 @@
 angular.module('page', ["ideUI", "ideView"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'codbex-salaries.Salaries.SalaryItem';
+		messageHubProvider.eventIdPrefix = 'codbex-salaries.entities.SalaryItemType';
 	}])
 	.controller('PageController', ['$scope', 'messageHub', 'ViewParameters', function ($scope, messageHub, ViewParameters) {
 
@@ -14,8 +14,6 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
-			$scope.optionsType = params.optionsType;
-			$scope.optionsDirection = params.optionsDirection;
 		}
 
 		$scope.filter = function () {
@@ -41,20 +39,8 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Id !== undefined) {
 				filter.$filter.equals.Id = entity.Id;
 			}
-			if (entity.Salary !== undefined) {
-				filter.$filter.equals.Salary = entity.Salary;
-			}
-			if (entity.Type !== undefined) {
-				filter.$filter.equals.Type = entity.Type;
-			}
-			if (entity.Quantity !== undefined) {
-				filter.$filter.equals.Quantity = entity.Quantity;
-			}
-			if (entity.Direction !== undefined) {
-				filter.$filter.equals.Direction = entity.Direction;
-			}
-			if (entity.Amount !== undefined) {
-				filter.$filter.equals.Amount = entity.Amount;
+			if (entity.Name) {
+				filter.$filter.contains.Name = entity.Name;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,
@@ -69,7 +55,7 @@ angular.module('page', ["ideUI", "ideView"])
 		};
 
 		$scope.cancel = function () {
-			messageHub.closeDialogWindow("SalaryItem-filter");
+			messageHub.closeDialogWindow("SalaryItemType-filter");
 		};
 
 		$scope.clearErrorMessage = function () {
