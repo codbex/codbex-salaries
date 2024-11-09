@@ -6,7 +6,7 @@ import { dao as daoApi } from "sdk/db";
 export interface SalaryItemEntity {
     readonly Id: number;
     Salary?: number;
-    Name?: string;
+    Type?: number;
     Quantity?: number;
     Direction?: number;
     Amount?: number;
@@ -14,7 +14,7 @@ export interface SalaryItemEntity {
 
 export interface SalaryItemCreateEntity {
     readonly Salary?: number;
-    readonly Name?: string;
+    readonly Type?: number;
     readonly Quantity?: number;
     readonly Direction?: number;
 }
@@ -28,7 +28,7 @@ export interface SalaryItemEntityOptions {
         equals?: {
             Id?: number | number[];
             Salary?: number | number[];
-            Name?: string | string[];
+            Type?: number | number[];
             Quantity?: number | number[];
             Direction?: number | number[];
             Amount?: number | number[];
@@ -36,7 +36,7 @@ export interface SalaryItemEntityOptions {
         notEquals?: {
             Id?: number | number[];
             Salary?: number | number[];
-            Name?: string | string[];
+            Type?: number | number[];
             Quantity?: number | number[];
             Direction?: number | number[];
             Amount?: number | number[];
@@ -44,7 +44,7 @@ export interface SalaryItemEntityOptions {
         contains?: {
             Id?: number;
             Salary?: number;
-            Name?: string;
+            Type?: number;
             Quantity?: number;
             Direction?: number;
             Amount?: number;
@@ -52,7 +52,7 @@ export interface SalaryItemEntityOptions {
         greaterThan?: {
             Id?: number;
             Salary?: number;
-            Name?: string;
+            Type?: number;
             Quantity?: number;
             Direction?: number;
             Amount?: number;
@@ -60,7 +60,7 @@ export interface SalaryItemEntityOptions {
         greaterThanOrEqual?: {
             Id?: number;
             Salary?: number;
-            Name?: string;
+            Type?: number;
             Quantity?: number;
             Direction?: number;
             Amount?: number;
@@ -68,7 +68,7 @@ export interface SalaryItemEntityOptions {
         lessThan?: {
             Id?: number;
             Salary?: number;
-            Name?: string;
+            Type?: number;
             Quantity?: number;
             Direction?: number;
             Amount?: number;
@@ -76,7 +76,7 @@ export interface SalaryItemEntityOptions {
         lessThanOrEqual?: {
             Id?: number;
             Salary?: number;
-            Name?: string;
+            Type?: number;
             Quantity?: number;
             Direction?: number;
             Amount?: number;
@@ -122,9 +122,9 @@ export class SalaryItemRepository {
                 type: "INTEGER",
             },
             {
-                name: "Name",
-                column: "SALARYITEM_NAME",
-                type: "VARCHAR",
+                name: "Type",
+                column: "SALARYITEM_TYPE",
+                type: "INTEGER",
             },
             {
                 name: "Quantity",

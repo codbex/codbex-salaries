@@ -125,6 +125,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("SalaryItem-details", {
 				action: "select",
 				entity: entity,
+				optionsType: $scope.optionsType,
 				optionsDirection: $scope.optionsDirection,
 			});
 		};
@@ -132,6 +133,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.openFilter = function (entity) {
 			messageHub.showDialogWindow("SalaryItem-filter", {
 				entity: $scope.filterEntity,
+				optionsType: $scope.optionsType,
 				optionsDirection: $scope.optionsDirection,
 			});
 		};
@@ -143,6 +145,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: {},
 				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
+				optionsType: $scope.optionsType,
 				optionsDirection: $scope.optionsDirection,
 			}, null, false);
 		};
@@ -153,6 +156,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: entity,
 				selectedMainEntityKey: "Salary",
 				selectedMainEntityId: $scope.selectedMainEntityId,
+				optionsType: $scope.optionsType,
 				optionsDirection: $scope.optionsDirection,
 			}, null, false);
 		};
@@ -187,8 +191,18 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		};
 
 		//----------------Dropdowns-----------------//
+		$scope.optionsType = [];
 		$scope.optionsDirection = [];
 
+
+		$http.get("/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts").then(function (response) {
+			$scope.optionsType = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
 
 		$http.get("/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts").then(function (response) {
 			$scope.optionsDirection = response.data.map(e => {
@@ -199,6 +213,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
+		$scope.optionsTypeValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsType.length; i++) {
+				if ($scope.optionsType[i].value === optionKey) {
+					return $scope.optionsType[i].text;
+				}
+			}
+			return null;
+		};
 		$scope.optionsDirectionValue = function (optionKey) {
 			for (let i = 0; i < $scope.optionsDirection.length; i++) {
 				if ($scope.optionsDirection[i].value === optionKey) {

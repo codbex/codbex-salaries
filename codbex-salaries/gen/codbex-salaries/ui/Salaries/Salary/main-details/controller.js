@@ -92,6 +92,12 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.action = 'update';
 			});
 		});
+
+		$scope.serviceEmployee = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
+		$scope.serviceCurrency = "/services/ts/codbex-currencies/gen/codbex-currencies/api/Currencies/CurrencyService.ts";
+		$scope.serviceStatus = "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts";
+		$scope.serviceRole = "/services/ts/codbex-companies/gen/codbex-companies/api/Companies/JobRoleService.ts";
+
 		//-----------------Events-------------------//
 
 		$scope.create = function () {

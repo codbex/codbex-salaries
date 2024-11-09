@@ -1,34 +1,23 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { SalaryItemRepository, SalaryItemEntityOptions } from "../../dao/Salaries/SalaryItemRepository";
+import { SalaryItemTypeRepository, SalaryItemTypeEntityOptions } from "../../dao/entities/SalaryItemTypeRepository";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-salaries-Salaries-SalaryItem", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-salaries-entities-SalaryItemType", ["validate"]);
 
 @Controller
-class SalaryItemService {
+class SalaryItemTypeService {
 
-    private readonly repository = new SalaryItemRepository();
+    private readonly repository = new SalaryItemTypeRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: SalaryItemEntityOptions = {
+            const options: SalaryItemTypeEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
-
-            let Salary = parseInt(ctx.queryParameters.Salary);
-            Salary = isNaN(Salary) ? ctx.queryParameters.Salary : Salary;
-
-            if (Salary !== undefined) {
-                options.$filter = {
-                    equals: {
-                        Salary: Salary
-                    }
-                };
-            }
 
             return this.repository.findAll(options);
         } catch (error: any) {
@@ -41,7 +30,7 @@ class SalaryItemService {
         try {
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/Salaries/SalaryItemService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -84,7 +73,7 @@ class SalaryItemService {
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("SalaryItem not found");
+                HttpUtils.sendResponseNotFound("SalaryItemType not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -112,7 +101,7 @@ class SalaryItemService {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("SalaryItem not found");
+                HttpUtils.sendResponseNotFound("SalaryItemType not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -130,17 +119,11 @@ class SalaryItemService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Salary === null || entity.Salary === undefined) {
-            throw new ValidationError(`The 'Salary' property is required, provide a valid value`);
+        if (entity.Name === null || entity.Name === undefined) {
+            throw new ValidationError(`The 'Name' property is required, provide a valid value`);
         }
-        if (entity.Type === null || entity.Type === undefined) {
-            throw new ValidationError(`The 'Type' property is required, provide a valid value`);
-        }
-        if (entity.Quantity === null || entity.Quantity === undefined) {
-            throw new ValidationError(`The 'Quantity' property is required, provide a valid value`);
-        }
-        if (entity.Direction === null || entity.Direction === undefined) {
-            throw new ValidationError(`The 'Direction' property is required, provide a valid value`);
+        if (entity.Name?.length > 200) {
+            throw new ValidationError(`The 'Name' exceeds the maximum length of [200] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);
