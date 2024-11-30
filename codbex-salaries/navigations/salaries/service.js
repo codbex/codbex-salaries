@@ -1,10 +1,8 @@
 const navigationData = {
     id: 'salaries-navigation',
     label: "Salaries",
-    view: "salaries",
     group: "salaries",
-    orderNumber: 1000,
-    lazyLoad: true,
+    order: 1000,
     link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/index.html?embedded"
 };
 
@@ -17,3 +15,5 @@ if (typeof exports !== 'undefined') {
 }
 
 export { getNavigation }
+
+
