@@ -1,0 +1,5 @@
+{
+    "extensionPoint": "dashboard-widgets",
+    "module": "codbex-salaries/widgets/salaries-sum/service.js",
+    "description": "Salaries Sum Widget"
+}
