@@ -2,7 +2,7 @@ const navigationData = {
     id: 'salaries-navigation',
     label: "Salaries",
     group: "salaries",
-    order: 1000,
+    order: 100,
     link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/index.html?embedded"
 };
 

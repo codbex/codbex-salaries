@@ -1,9 +1,9 @@
 const widgetData = {
-    id: 'salaries-sum',
+    id: 'salaries-sum-widget',
     label: 'Salaries Sum',
     link: '/services/web/codbex-salaries/widgets/salaries-sum/index.html',
     lazyLoad: true,
-    size: "medium"
+    size: "small"
 };
 
 function getWidget() {
