@@ -9,6 +9,6 @@
     },
     "dependencies": {
         "@codbex/codbex-employees": "0.4.0",
-        "@codbex/codbex-currencies": "0.3.0",
+        "@codbex/codbex-currencies": "0.3.0"
     }
 }
