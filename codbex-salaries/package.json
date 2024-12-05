@@ -1,5 +1,6 @@
 {
-    "name": "codbex/codbex-salaries",
+    "name": "@codbex/codbex-salaries",
+    "version": "0.0.1",
     "repository": {
         "url": "https://github.com/codbex/codbex-salaries.git",
         "type": "git"
