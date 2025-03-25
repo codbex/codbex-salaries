@@ -1,5 +1,6 @@
 {
     "extensionPoint": "dashboard-navigations",
     "module": "codbex-salaries/navigations/salaries/service.js",
-    "description": "Salaries Navigation"
+    "description": "Salaries Navigation",
+    "role": "codbex-salaries.Salaries.SalaryReadOnly,codbex-salaries.Salaries.SalaryItemFullAccess"
 }

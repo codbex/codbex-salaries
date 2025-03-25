@@ -11,9 +11,9 @@ servers:
 tags:
   - name: Salaries
   - name: Salaries
+  - name: Settings
   - name: entities
-  - name: entities
-  - name: entities
+  - name: Settings
 paths:
   /codbex-salaries/gen/codbex-salaries/api/Salaries/SalaryService.ts:
     get:
@@ -783,7 +783,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryStatusService.ts:
     get:
       summary: List SalaryStatus
       parameters:
@@ -804,7 +804,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -835,7 +835,7 @@ paths:
     post:
       summary: Create SalaryStatus
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -867,7 +867,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts/{id}:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryStatusService.ts/{id}:
     get:
       summary: Get SalaryStatus by Id
       parameters:
@@ -878,7 +878,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -916,7 +916,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -964,7 +964,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       responses:
         204:
           description: Successful Request
@@ -986,11 +986,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts/count:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryStatusService.ts/count:
     get:
       summary: Count the number of SalaryStatus
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1014,7 +1014,7 @@ paths:
     post:
       summary: Count the number of SalaryStatus by SalaryStatusFilterOptions
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1096,11 +1096,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts/search:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryStatusService.ts/search:
     post:
       summary: Search SalaryStatus by SalaryStatusFilterOptions
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1567,7 +1567,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts:
     get:
       summary: List SalaryItemType
       parameters:
@@ -1588,7 +1588,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1619,7 +1619,7 @@ paths:
     post:
       summary: Create SalaryItemType
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1651,7 +1651,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts/{id}:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts/{id}:
     get:
       summary: Get SalaryItemType by Id
       parameters:
@@ -1662,7 +1662,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1700,7 +1700,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1748,7 +1748,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - Settings
       responses:
         204:
           description: Successful Request
@@ -1770,11 +1770,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts/count:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts/count:
     get:
       summary: Count the number of SalaryItemType
       tags:
-        - entities
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -1798,7 +1798,7 @@ paths:
     post:
       summary: Count the number of SalaryItemType by SalaryItemTypeFilterOptions
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:
@@ -1880,11 +1880,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts/search:
+  /codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts/search:
     post:
       summary: Search SalaryItemType by SalaryItemTypeFilterOptions
       tags:
-        - entities
+        - Settings
       requestBody:
         content:
           application/json:

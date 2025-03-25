@@ -8,6 +8,9 @@ const viewData = {
     label: "SalaryItemDirection",
     link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/entities/SalaryItemDirection/dialog-window/index.html",
     perspectiveName: "entities",
+    roles: [
+        "codbex-salaries.entities.SalaryItemDirectionReadOnly",
+    ]
 };
 
 if (typeof exports !== 'undefined') {

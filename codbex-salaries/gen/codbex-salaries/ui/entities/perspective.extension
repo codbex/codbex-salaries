@@ -1,1 +1,5 @@
-{"module":"codbex-salaries/gen/codbex-salaries/ui/entities/perspective.js","extensionPoint":"codbex-salaries","description":"codbex-salaries - Perspective - entities"}
+{
+    "module": "codbex-salaries/gen/codbex-salaries/ui/entities/perspective.js",
+    "extensionPoint": "codbex-salaries",
+    "description": "codbex-salaries - Perspective - entities"
+}

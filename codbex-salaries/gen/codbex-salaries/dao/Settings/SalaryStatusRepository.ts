@@ -3,20 +3,20 @@ import { producer } from "sdk/messaging";
 import { extensions } from "sdk/extensions";
 import { dao as daoApi } from "sdk/db";
 
-export interface SalaryItemTypeEntity {
+export interface SalaryStatusEntity {
     readonly Id: number;
     Name?: string;
 }
 
-export interface SalaryItemTypeCreateEntity {
+export interface SalaryStatusCreateEntity {
     readonly Name?: string;
 }
 
-export interface SalaryItemTypeUpdateEntity extends SalaryItemTypeCreateEntity {
+export interface SalaryStatusUpdateEntity extends SalaryStatusCreateEntity {
     readonly Id: number;
 }
 
-export interface SalaryItemTypeEntityOptions {
+export interface SalaryStatusEntityOptions {
     $filter?: {
         equals?: {
             Id?: number | number[];
@@ -47,17 +47,17 @@ export interface SalaryItemTypeEntityOptions {
             Name?: string;
         };
     },
-    $select?: (keyof SalaryItemTypeEntity)[],
-    $sort?: string | (keyof SalaryItemTypeEntity)[],
+    $select?: (keyof SalaryStatusEntity)[],
+    $sort?: string | (keyof SalaryStatusEntity)[],
     $order?: 'asc' | 'desc',
     $offset?: number,
     $limit?: number,
 }
 
-interface SalaryItemTypeEntityEvent {
+interface SalaryStatusEntityEvent {
     readonly operation: 'create' | 'update' | 'delete';
     readonly table: string;
-    readonly entity: Partial<SalaryItemTypeEntity>;
+    readonly entity: Partial<SalaryStatusEntity>;
     readonly key: {
         name: string;
         column: string;
@@ -65,25 +65,25 @@ interface SalaryItemTypeEntityEvent {
     }
 }
 
-interface SalaryItemTypeUpdateEntityEvent extends SalaryItemTypeEntityEvent {
-    readonly previousEntity: SalaryItemTypeEntity;
+interface SalaryStatusUpdateEntityEvent extends SalaryStatusEntityEvent {
+    readonly previousEntity: SalaryStatusEntity;
 }
 
-export class SalaryItemTypeRepository {
+export class SalaryStatusRepository {
 
     private static readonly DEFINITION = {
-        table: "CODBEX_SALARYITEMTYPE",
+        table: "CODBEX_SALARYSTATUS",
         properties: [
             {
                 name: "Id",
-                column: "SALARYITEMTYPE_ID",
+                column: "SALARYSTATUS_ID",
                 type: "INTEGER",
                 id: true,
                 autoIncrement: true,
             },
             {
                 name: "Name",
-                column: "SALARYITEMTYPE_NAME",
+                column: "SALARYSTATUS_NAME",
                 type: "VARCHAR",
             }
         ]
@@ -92,58 +92,58 @@ export class SalaryItemTypeRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(SalaryItemTypeRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(SalaryStatusRepository.DEFINITION, null, dataSource);
     }
 
-    public findAll(options?: SalaryItemTypeEntityOptions): SalaryItemTypeEntity[] {
+    public findAll(options?: SalaryStatusEntityOptions): SalaryStatusEntity[] {
         return this.dao.list(options);
     }
 
-    public findById(id: number): SalaryItemTypeEntity | undefined {
+    public findById(id: number): SalaryStatusEntity | undefined {
         const entity = this.dao.find(id);
         return entity ?? undefined;
     }
 
-    public create(entity: SalaryItemTypeCreateEntity): number {
+    public create(entity: SalaryStatusCreateEntity): number {
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",
-            table: "CODBEX_SALARYITEMTYPE",
+            table: "CODBEX_SALARYSTATUS",
             entity: entity,
             key: {
                 name: "Id",
-                column: "SALARYITEMTYPE_ID",
+                column: "SALARYSTATUS_ID",
                 value: id
             }
         });
         return id;
     }
 
-    public update(entity: SalaryItemTypeUpdateEntity): void {
+    public update(entity: SalaryStatusUpdateEntity): void {
         const previousEntity = this.findById(entity.Id);
         this.dao.update(entity);
         this.triggerEvent({
             operation: "update",
-            table: "CODBEX_SALARYITEMTYPE",
+            table: "CODBEX_SALARYSTATUS",
             entity: entity,
             previousEntity: previousEntity,
             key: {
                 name: "Id",
-                column: "SALARYITEMTYPE_ID",
+                column: "SALARYSTATUS_ID",
                 value: entity.Id
             }
         });
     }
 
-    public upsert(entity: SalaryItemTypeCreateEntity | SalaryItemTypeUpdateEntity): number {
-        const id = (entity as SalaryItemTypeUpdateEntity).Id;
+    public upsert(entity: SalaryStatusCreateEntity | SalaryStatusUpdateEntity): number {
+        const id = (entity as SalaryStatusUpdateEntity).Id;
         if (!id) {
             return this.create(entity);
         }
 
         const existingEntity = this.findById(id);
         if (existingEntity) {
-            this.update(entity as SalaryItemTypeUpdateEntity);
+            this.update(entity as SalaryStatusUpdateEntity);
             return id;
         } else {
             return this.create(entity);
@@ -155,22 +155,22 @@ export class SalaryItemTypeRepository {
         this.dao.remove(id);
         this.triggerEvent({
             operation: "delete",
-            table: "CODBEX_SALARYITEMTYPE",
+            table: "CODBEX_SALARYSTATUS",
             entity: entity,
             key: {
                 name: "Id",
-                column: "SALARYITEMTYPE_ID",
+                column: "SALARYSTATUS_ID",
                 value: id
             }
         });
     }
 
-    public count(options?: SalaryItemTypeEntityOptions): number {
+    public count(options?: SalaryStatusEntityOptions): number {
         return this.dao.count(options);
     }
 
     public customDataCount(): number {
-        const resultSet = query.execute('SELECT COUNT(*) AS COUNT FROM "CODBEX_SALARYITEMTYPE"');
+        const resultSet = query.execute('SELECT COUNT(*) AS COUNT FROM "CODBEX_SALARYSTATUS"');
         if (resultSet !== null && resultSet[0] !== null) {
             if (resultSet[0].COUNT !== undefined && resultSet[0].COUNT !== null) {
                 return resultSet[0].COUNT;
@@ -181,8 +181,8 @@ export class SalaryItemTypeRepository {
         return 0;
     }
 
-    private async triggerEvent(data: SalaryItemTypeEntityEvent | SalaryItemTypeUpdateEntityEvent) {
-        const triggerExtensions = await extensions.loadExtensionModules("codbex-salaries-entities-SalaryItemType", ["trigger"]);
+    private async triggerEvent(data: SalaryStatusEntityEvent | SalaryStatusUpdateEntityEvent) {
+        const triggerExtensions = await extensions.loadExtensionModules("codbex-salaries-Settings-SalaryStatus", ["trigger"]);
         triggerExtensions.forEach(triggerExtension => {
             try {
                 triggerExtension.trigger(data);
@@ -190,6 +190,6 @@ export class SalaryItemTypeRepository {
                 console.error(error);
             }            
         });
-        producer.topic("codbex-salaries-entities-SalaryItemType").send(JSON.stringify(data));
+        producer.topic("codbex-salaries-Settings-SalaryStatus").send(JSON.stringify(data));
     }
 }

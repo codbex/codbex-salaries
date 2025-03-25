@@ -7,8 +7,8 @@ const perspectiveData = {
 	id: 'Salaries',
 	name: 'Salaries',
 	link: '/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/index.html',
-	order: 109,
-	icon: '/services/web/resources/unicons/money-bill.svg',
+	order: '109',
+	icon: '/services/web/resources/unicons/money-bill.svg'
 };
 
 if (typeof exports !== 'undefined') {
