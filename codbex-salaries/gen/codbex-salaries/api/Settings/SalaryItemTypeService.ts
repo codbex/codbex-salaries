@@ -1,23 +1,37 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { SalaryStatusRepository, SalaryStatusEntityOptions } from "../../dao/entities/SalaryStatusRepository";
+import { SalaryItemTypeRepository, SalaryItemTypeEntityOptions } from "../../dao/Settings/SalaryItemTypeRepository";
+import { user } from "sdk/security"
+import { ForbiddenError } from "../utils/ForbiddenError";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-salaries-entities-SalaryStatus", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-salaries-Settings-SalaryItemType", ["validate"]);
 
 @Controller
-class SalaryStatusService {
+class SalaryItemTypeService {
 
-    private readonly repository = new SalaryStatusRepository();
+    private readonly repository = new SalaryItemTypeRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: SalaryStatusEntityOptions = {
+            this.checkPermissions("read");
+            const options: SalaryItemTypeEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
+
+            let ${masterEntityId} = parseInt(ctx.queryParameters.${masterEntityId});
+            ${masterEntityId} = isNaN(${masterEntityId}) ? ctx.queryParameters.${masterEntityId} : ${masterEntityId};
+
+            if (${masterEntityId} !== undefined) {
+                options.$filter = {
+                    equals: {
+                        ${masterEntityId}: ${masterEntityId}
+                    }
+                };
+            }
 
             return this.repository.findAll(options);
         } catch (error: any) {
@@ -28,9 +42,10 @@ class SalaryStatusService {
     @Post("/")
     public create(entity: any) {
         try {
+            this.checkPermissions("write");
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryStatusService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -41,6 +56,7 @@ class SalaryStatusService {
     @Get("/count")
     public count() {
         try {
+            this.checkPermissions("read");
             return this.repository.count();
         } catch (error: any) {
             this.handleError(error);
@@ -50,6 +66,7 @@ class SalaryStatusService {
     @Post("/count")
     public countWithFilter(filter: any) {
         try {
+            this.checkPermissions("read");
             return this.repository.count(filter);
         } catch (error: any) {
             this.handleError(error);
@@ -59,6 +76,7 @@ class SalaryStatusService {
     @Post("/search")
     public search(filter: any) {
         try {
+            this.checkPermissions("read");
             return this.repository.findAll(filter);
         } catch (error: any) {
             this.handleError(error);
@@ -68,12 +86,13 @@ class SalaryStatusService {
     @Get("/:id")
     public getById(_: any, ctx: any) {
         try {
+            this.checkPermissions("read");
             const id = parseInt(ctx.pathParameters.id);
             const entity = this.repository.findById(id);
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("SalaryStatus not found");
+                HttpUtils.sendResponseNotFound("SalaryItemType not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -83,6 +102,7 @@ class SalaryStatusService {
     @Put("/:id")
     public update(entity: any, ctx: any) {
         try {
+            this.checkPermissions("write");
             entity.Id = ctx.pathParameters.id;
             this.validateEntity(entity);
             this.repository.update(entity);
@@ -95,13 +115,14 @@ class SalaryStatusService {
     @Delete("/:id")
     public deleteById(_: any, ctx: any) {
         try {
+            this.checkPermissions("write");
             const id = ctx.pathParameters.id;
             const entity = this.repository.findById(id);
             if (entity) {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("SalaryStatus not found");
+                HttpUtils.sendResponseNotFound("SalaryItemType not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -118,12 +139,21 @@ class SalaryStatusService {
         }
     }
 
+    private checkPermissions(operationType: string) {
+        if (operationType === "read" && !(user.isInRole("codbex-salaries.Settings.SalaryItemTypeReadOnly") || user.isInRole("codbex-salaries.Settings.SalaryItemTypeFullAccess"))) {
+            throw new ForbiddenError();
+        }
+        if (operationType === "write" && !user.isInRole("codbex-salaries.Settings.SalaryItemTypeFullAccess")) {
+            throw new ForbiddenError();
+        }
+    }
+
     private validateEntity(entity: any): void {
         if (entity.Name === null || entity.Name === undefined) {
             throw new ValidationError(`The 'Name' property is required, provide a valid value`);
         }
-        if (entity.Name?.length > 20) {
-            throw new ValidationError(`The 'Name' exceeds the maximum length of [20] characters`);
+        if (entity.Name?.length > 200) {
+            throw new ValidationError(`The 'Name' exceeds the maximum length of [200] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);

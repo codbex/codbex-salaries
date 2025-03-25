@@ -7,7 +7,7 @@ const viewData = {
     id: "SalaryItem-filter",
     label: "SalaryItem Filter",
     link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/dialog-filter/index.html",
-    perspectiveName: "Salaries",
+    perspectiveName: "Salaries"
 };
 
 if (typeof exports !== 'undefined') {

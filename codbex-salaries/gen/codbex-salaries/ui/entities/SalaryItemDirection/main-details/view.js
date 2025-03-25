@@ -4,12 +4,12 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "SalaryItemType",
-    label: "SalaryItemType",
+    id: "SalaryItemDirection-details",
+    label: "SalaryItemDirection",
     factory: "frame",
     region: "center",
-    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/entities/SalaryItemType/index.html",
-    perspectiveName: "entities",
+    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/entities/SalaryItemDirection/main-details/index.html",
+    perspectiveName: "entities"
 };
 
 if (typeof exports !== 'undefined') {

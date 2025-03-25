@@ -14,6 +14,6 @@ exports.getTile = function () {
         icon: "/services/web/resources/unicons/file.svg",
         location: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/index.html",
         order: "100",
-        groupOrder: "109",
+        groupOrder: "109"
     };
-};
+}

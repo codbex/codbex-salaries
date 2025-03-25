@@ -4,10 +4,13 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "SalaryItemType-filter",
-    label: "SalaryItemType Filter",
-    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/entities/SalaryItemType/dialog-filter/index.html",
-    perspectiveName: "entities",
+    id: "Salary-details",
+    label: "Salary",
+    link: "/services/web/codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/dialog-window/index.html",
+    perspectiveName: "Salaries",
+    roles: [
+        "codbex-salaries.Salaries.SalaryReadOnly",
+    ]
 };
 
 if (typeof exports !== 'undefined') {

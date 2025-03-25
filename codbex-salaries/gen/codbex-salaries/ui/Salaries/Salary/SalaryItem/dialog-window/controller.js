@@ -57,7 +57,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		};
 
-		$scope.serviceType = "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemTypeService.ts";
+		$scope.serviceType = "/services/ts/codbex-salaries/gen/codbex-salaries/api/Settings/SalaryItemTypeService.ts";
 		$scope.serviceDirection = "/services/ts/codbex-salaries/gen/codbex-salaries/api/entities/SalaryItemDirectionService.ts";
 
 		$scope.cancel = function () {

@@ -2,5 +2,5 @@
     "module": "{{projectName}}/gen/{{genFolderName}}/ui/{{perspectiveName}}/{{name}}/dialog-window/view.js",
     "extensionPoint": "dialog-window",
     "description": "{{projectName}} - Application Dialog Window",
-    "role": "codbex-salaries.entities.SalaryItemDirectionReadOnly,codbex-salaries.entities.SalaryItemDirectionFullAccess"
+    "role": "codbex-salaries.Salaries.SalaryReadOnly,codbex-salaries.Salaries.SalaryFullAccess"
 }

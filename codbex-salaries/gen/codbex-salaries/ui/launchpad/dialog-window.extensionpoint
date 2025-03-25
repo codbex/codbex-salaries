@@ -1,4 +1,4 @@
 {
-    "name": "codbex-salaries-dialog-window",
+    "name": "dialog-window",
     "description": "codbex-salaries - Extension Point for the Application Dialog Window Providers"
 }
