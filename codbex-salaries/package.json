@@ -12,7 +12,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@codbex/codbex-employees": "0.5.0",
-        "@codbex/codbex-currencies": "0.4.0"
+        "@codbex/codbex-employees": "1.4.0",
+        "@codbex/codbex-currencies": "1.4.0"
     }
 }
