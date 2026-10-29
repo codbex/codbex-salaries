@@ -14,7 +14,7 @@ angular.module('salaries-sum', ['ideUI', 'ideView'])
 
         $scope.currentYear = new Date().getFullYear();
 
-        const salariesServiceUrl = "/services/ts/codbex-salaries/widgets/api/SalariesService.ts/SalariesSum";
+        const salariesServiceUrl = "/services/java/codbex-salaries/widgets/api/SalariesService/SalariesSum";
 
         $http.get(salariesServiceUrl)
             .then(function (response) {

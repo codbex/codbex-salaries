@@ -1,5 +1,0 @@
-{
-    "module": "codbex-salaries/gen/codbex-salaries/ui/entities/perspective.js",
-    "extensionPoint": "portal",
-    "description": "codbex-salaries - Perspective - entities"
-}

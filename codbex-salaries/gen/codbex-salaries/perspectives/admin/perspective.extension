@@ -1,0 +1,5 @@
+{
+    "module": "codbex-salaries/gen/codbex-salaries/perspectives/admin/perspective.json",
+    "extensionPoint": "application-admin-perspectives",
+    "description": "codbex-salaries - Administration perspective"
+}

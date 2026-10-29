@@ -1,6 +1,0 @@
-{
-    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/SalaryItem/dialog-window/view.js",
-    "extensionPoint": "dialog-window",
-    "description": "codbex-salaries - Application Dialog Window",
-    "role": "codbex-salaries.Salaries.SalaryItemReadOnly,codbex-salaries.Salaries.SalaryItemFullAccess"
-}

@@ -8,11 +8,8 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
     },
-    "scripts": {
-        "build": "tsc"
-    },
     "dependencies": {
-        "@codbex/codbex-employees": "1.4.0",
-        "@codbex/codbex-currencies": "1.4.0"
+        "@codbex/codbex-employees": "^1.7.0",
+        "@codbex/codbex-currencies": "^1.5.0"
     }
 }

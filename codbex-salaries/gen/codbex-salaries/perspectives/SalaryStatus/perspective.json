@@ -1,0 +1,9 @@
+{
+    "id": "codbex-salaries-SalaryStatus",
+    "label": "SalaryStatus",
+    "tkey": "codbex-salaries:codbex-salaries-model.t.SALARYSTATUS_plural",
+    "path": "/services/web/codbex-salaries/gen/codbex-salaries/index.html?embedded=true#/SalaryStatus",
+    "kind": "PRIMARY",
+    "order": 900,
+    "icon": "${iconName}"
+}

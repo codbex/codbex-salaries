@@ -1,0 +1,7 @@
+{
+    "id": "codbex-salaries-admin",
+    "label": "codbex-salaries",
+    "path": "/services/web/codbex-salaries/gen/codbex-salaries/admin/index.html",
+    "kind": "ADMIN",
+    "icon": "wrench"
+}

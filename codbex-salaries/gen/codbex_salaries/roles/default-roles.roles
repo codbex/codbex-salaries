@@ -1,0 +1,42 @@
+[
+    {
+        "name": "codbex-salaries.Salaries.SalaryReadOnly",
+        "description": "A role that grants read only permission for Salary."
+    },
+    {
+        "name": "codbex-salaries.Salaries.SalaryFullAccess",
+        "description": "A role that grants full access for Salary."
+    },
+    {
+        "name": "codbex-salaries.Salaries.SalaryItemReadOnly",
+        "description": "A role that grants read only permission for SalaryItem."
+    },
+    {
+        "name": "codbex-salaries.Salaries.SalaryItemFullAccess",
+        "description": "A role that grants full access for SalaryItem."
+    },
+    {
+        "name": "codbex-salaries.Settings.SalaryStatusReadOnly",
+        "description": "A role that grants read only permission for SalaryStatus."
+    },
+    {
+        "name": "codbex-salaries.Settings.SalaryStatusFullAccess",
+        "description": "A role that grants full access for SalaryStatus."
+    },
+    {
+        "name": "codbex-salaries.entities.SalaryItemDirectionReadOnly",
+        "description": "A role that grants read only permission for SalaryItemDirection."
+    },
+    {
+        "name": "codbex-salaries.entities.SalaryItemDirectionFullAccess",
+        "description": "A role that grants full access for SalaryItemDirection."
+    },
+    {
+        "name": "codbex-salaries.Settings.SalaryItemTypeReadOnly",
+        "description": "A role that grants read only permission for SalaryItemType."
+    },
+    {
+        "name": "codbex-salaries.Settings.SalaryItemTypeFullAccess",
+        "description": "A role that grants full access for SalaryItemType."
+    }
+]
