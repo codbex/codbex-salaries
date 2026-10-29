@@ -1,6 +1,6 @@
 {
     "extensionPoint": "dashboard-widgets",
-    "module": "codbex-salaries/widgets/salaries-sum/service.js",
+    "module": "codbex-salaries/widgets/salaries-sum/service.json",
     "description": "Salaries Sum Widget",
     "role": "codbex-salaries.Salaries.SalaryReadOnly,codbex-salaries.Salaries.SalaryItemFullAccess"
 }

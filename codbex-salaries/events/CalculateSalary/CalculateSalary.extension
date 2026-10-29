@@ -1,5 +1,0 @@
-{
-    "extensionPoint": "codbex-salaries-Salaries-SalaryItem",
-    "description": "Salaries extension",
-    "module": "codbex-salaries/events/CalculateSalary/CalculateSalaryHandler.ts"
-}

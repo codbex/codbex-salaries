@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--
+  The ADMINISTRATION surface of this module - deliberately PLAIN, one level above the database:
+  every non-projection entity as a flat server-side-paged table of EVERY column plus a flat record
+  editor. Writes go through the generated REST controllers, so repository events, checks, numbering
+  and audit fire exactly like any application write (an immutable record answers 409 here too).
+  Hosted by the Administration shell (/services/web/admin/), which is ADMINISTRATOR-gated.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codbex-salaries - Administration</title>
+    <link href="/webjars/codbex__harmonia/dist/harmonia.css" rel="stylesheet" />
+    <style>
+        html, body { height: 100%; }
+        .admin-cell { max-width: 16rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    </style>
+</head>
+<body x-data="adminApp" x-cloak class="hbox size-full">
+
+    <!-- Entity navigation: every entity of the module, no grouping, no opinions. -->
+    <aside class="vbox gap-1 p-3 border-r overflow-y-auto shrink-0" style="width: 15rem;">
+        <div class="hbox items-center gap-2 pb-2">
+            <svg x-h-lucide role="presentation" data-lucide="wrench" class="size-4"></svg>
+            <span class="font-semibold" x-text="config.title"></span>
+        </div>
+        <ul x-h-list aria-label="Entities">
+            <template x-for="e in config.entities" :key="e.name">
+                <li x-h-list-item>
+                    <button type="button" x-h-list-item-button :aria-current="selected && selected.name === e.name" @click="select(e)">
+                        <span x-text="e.label"></span>
+                    </button>
+                </li>
+            </template>
+        </ul>
+    </aside>
+
+    <!-- The selected entity: flat table + record editor. -->
+    <main class="vbox flex-1 overflow-hidden" x-show="selected">
+        <div x-h-toolbar>
+            <span x-h-toolbar-title x-text="selected ? selected.label : ''"></span>
+            <span class="text-sm opacity-75" x-text="total + ' record(s)'"></span>
+            <span class="flex-1"></span>
+            <button type="button" x-h-button data-variant="transparent" @click="load()" aria-label="Refresh">
+                <svg x-h-lucide role="presentation" data-lucide="refresh-cw" class="size-4"></svg>
+            </button>
+            <button type="button" x-h-button data-variant="primary" @click="startCreate()">
+                <svg x-h-lucide role="presentation" data-lucide="plus" class="size-4"></svg> New
+            </button>
+        </div>
+
+        <div x-show="error" x-h-alert data-variant="negative" role="alert" class="m-3">
+            <span x-text="error"></span>
+        </div>
+
+        <!-- Every column, raw. Row click opens the editor. -->
+        <div class="flex-1 overflow-auto p-3" x-show="!editing">
+            <div x-h-table-container>
+            <table x-h-table>
+                <thead x-h-table-header>
+                    <tr x-h-table-row>
+                        <template x-for="p in (selected ? selected.properties : [])" :key="p.name">
+                            <th x-h-table-head scope="col"><span x-text="p.name"></span></th>
+                        </template>
+                        <th x-h-table-head scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody x-h-table-body>
+                    <template x-for="row in rows" :key="rowKey(row)">
+                        <tr x-h-table-row data-hoverable="true" @click="rowClicked($event, row)">
+                            <template x-for="p in selected.properties" :key="p.name">
+                                <td x-h-table-cell><span class="admin-cell inline-block" x-text="display(p, row[p.name])"></span></td>
+                            </template>
+                            <td x-h-table-cell class="text-right" data-row-control>
+                                <button type="button" x-h-button data-variant="transparent" aria-label="Delete" @click="remove(row)">
+                                    <svg x-h-lucide role="presentation" data-lucide="trash-2" class="size-4"></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            </div>
+            <div class="hbox items-center gap-2 pt-3" x-show="total > limit">
+                <button type="button" x-h-button data-variant="outline" :disabled="offset === 0" @click="page(-1)">Previous</button>
+                <span class="text-sm" x-text="(offset + 1) + ' - ' + Math.min(offset + limit, total) + ' of ' + total"></span>
+                <button type="button" x-h-button data-variant="outline" :disabled="offset + limit >= total" @click="page(1)">Next</button>
+            </div>
+        </div>
+
+        <!-- The flat record editor: every column an input; read-only/system columns visible but disabled. -->
+        <div class="flex-1 overflow-auto p-4" x-show="editing">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" style="max-width: 60rem;">
+                <template x-for="p in (selected ? selected.properties : [])" :key="p.name">
+                    <div x-h-field x-show="!(isNew && p.pk)">
+                        <label x-h-label :for="'a_' + p.name">
+                            <span x-text="p.name"></span>
+                            <span class="text-negative" x-show="p.required && !p.readonly">*</span>
+                            <span class="opacity-50 text-xs" x-show="p.fk" x-text="'-> ' + p.fk"></span>
+                        </label>
+                        <template x-if="p.lookup">
+                            <div x-h-select>
+                                <input x-h-select-input :id="'a_' + p.name" x-model="draft[p.name]" :disabled="p.readonly" :placeholder="'Select ' + p.name + '...'" />
+                                <div x-h-select-content>
+                                    <div x-h-select-search data-filter="contains"></div>
+                                    <div x-h-select-list>
+                                        <template x-for="opt in (options[p.name] || [])" :key="opt.value">
+                                            <div x-h-select-option="opt.text" :data-value="String(opt.value)"></div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <template x-if="!p.lookup && p.type === 'boolean'">
+                            <div class="hbox items-center"><span x-h-checkbox><input type="checkbox" :id="'a_' + p.name" x-model="draft[p.name]" :disabled="p.readonly || (p.pk && !isNew)" /></span></div>
+                        </template>
+                        <template x-if="!p.lookup && p.type === 'number'">
+                            <div x-h-input-number><input type="number" step="any" :id="'a_' + p.name" x-model.number="draft[p.name]" :disabled="p.readonly || (p.pk && !isNew)" /></div>
+                        </template>
+                        <template x-if="!p.lookup && p.type !== 'boolean' && p.type !== 'number'">
+                            <input x-h-input type="text" :id="'a_' + p.name" x-model="draft[p.name]" :maxlength="p.maxLength" :disabled="p.readonly || (p.pk && !isNew)" />
+                        </template>
+                        <p x-h-field-description x-show="p.maxLength && !p.lookup && p.type === 'string' && String(draft[p.name] ?? '').length >= p.maxLength" x-text="'Maximum ' + p.maxLength + ' characters'"></p>
+                    </div>
+                </template>
+            </div>
+            <div class="hbox gap-2 pt-4">
+                <button type="button" x-h-button data-variant="primary" @click="save()" :disabled="saving">
+                    <span x-show="saving" x-h-spinner></span>
+                    <span x-text="isNew ? 'Create' : 'Save'"></span>
+                </button>
+                <button type="button" x-h-button data-variant="transparent" @click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- The shared refusal gate (application-core): the ONLY path from a REST error body to the banner. -->
+    <script src="/services/web/application-core/shell/js/services/apiError.js"></script>
+    <script>
+        // Generated metadata: every non-projection, non-report entity of this module with its full
+        // column list and its power REST controller (the same API the application pages use).
+        window.AdminConfig = {
+            title: 'codbex-salaries',
+            entities: [{"name":"Salary","label":"Salary","api":"/services/java/codbex-salaries/gen/codbex_salaries/api/salaries/SalaryController","pk":"Id","properties":[{"name":"Id","type":"number","required":false,"readonly":true,"pk":true,"fk":null,"lookup":null},{"name":"Employee","type":"number","required":true,"readonly":false,"pk":false,"fk":"Employee","lookup":{"url":"/services/java/codbex-employees/gen/codbex_employees/api/employees/EmployeeController","key":"Id","label":"Name"}},{"name":"Currency","type":"number","required":true,"readonly":false,"pk":false,"fk":"Currency","lookup":{"url":"/services/java/codbex-currencies/gen/codbex_currencies/api/currencies/CurrencyController","key":"Id","label":"Code"}},{"name":"Status","type":"number","required":true,"readonly":false,"pk":false,"fk":"SalaryStatus","lookup":{"url":"/services/java/codbex-salaries/gen/codbex_salaries/api/settings/SalaryStatusController","key":"Id","label":"Name"}},{"name":"Role","type":"number","required":true,"readonly":false,"pk":false,"fk":"JobRole","lookup":{"url":"/services/java/codbex-companies/gen/codbex_companies/api/companies/JobRoleController","key":"Id","label":"Name"}},{"name":"StartDate","type":"string","required":true,"readonly":false,"pk":false,"fk":null,"lookup":null},{"name":"EndDate","type":"string","required":false,"readonly":false,"pk":false,"fk":null,"lookup":null},{"name":"Gross","type":"number","required":false,"readonly":true,"pk":false,"fk":null,"lookup":null},{"name":"Net","type":"number","required":false,"readonly":true,"pk":false,"fk":null,"lookup":null}]},{"name":"SalaryItem","label":"SalaryItem","api":"/services/java/codbex-salaries/gen/codbex_salaries/api/salaries/SalaryItemController","pk":"Id","properties":[{"name":"Id","type":"number","required":false,"readonly":true,"pk":true,"fk":null,"lookup":null},{"name":"Salary","type":"number","required":true,"readonly":false,"pk":false,"fk":"Salary","lookup":null},{"name":"Type","type":"number","required":true,"readonly":false,"pk":false,"fk":"SalaryItemType","lookup":{"url":"/services/java/codbex-salaries/gen/codbex_salaries/api/settings/SalaryItemTypeController","key":"Id","label":"Name"}},{"name":"Quantity","type":"number","required":true,"readonly":false,"pk":false,"fk":null,"lookup":null},{"name":"Direction","type":"number","required":true,"readonly":false,"pk":false,"fk":"SalaryItemDirection","lookup":{"url":"/services/java/codbex-salaries/gen/codbex_salaries/api/entities/SalaryItemDirectionController","key":"Direction","label":"Direction"}},{"name":"Amount","type":"number","required":false,"readonly":true,"pk":false,"fk":null,"lookup":null}]},{"name":"SalaryStatus","label":"SalaryStatus","api":"/services/java/codbex-salaries/gen/codbex_salaries/api/settings/SalaryStatusController","pk":"Id","properties":[{"name":"Id","type":"number","required":false,"readonly":true,"pk":true,"fk":null,"lookup":null},{"name":"Name","type":"string","required":true,"readonly":false,"pk":false,"maxLength":20,"fk":null,"lookup":null}]},{"name":"SalaryItemDirection","label":"SalaryItemDirection","api":"/services/java/codbex-salaries/gen/codbex_salaries/api/entities/SalaryItemDirectionController","pk":"Direction","properties":[{"name":"Direction","type":"number","required":false,"readonly":false,"pk":true,"fk":null,"lookup":null}]},{"name":"SalaryItemType","label":"SalaryItemType","api":"/services/java/codbex-salaries/gen/codbex_salaries/api/settings/SalaryItemTypeController","pk":"Id","properties":[{"name":"Id","type":"number","required":false,"readonly":true,"pk":true,"fk":null,"lookup":null},{"name":"Name","type":"string","required":true,"readonly":false,"pk":false,"maxLength":200,"fk":null,"lookup":null}]}]
+        };
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('adminApp', () => ({
+                config: window.AdminConfig,
+                selected: null,
+                rows: [],
+                total: 0,
+                limit: 50,
+                offset: 0,
+                error: '',
+                editing: false,
+                isNew: false,
+                saving: false,
+                draft: {},
+                // Per relation column: the option list for the combobox and the id -> label map the
+                // table renders through. Loaded once per selected entity.
+                options: {},
+                labels: {},
+                // Resolves once this entity's relation options are loaded. The select resolves its
+                // DISPLAY TEXT from the option list at the moment the value is set, so opening the
+                // editor before the options exist leaves every combobox blank with the id bound.
+                lookupsReady: Promise.resolve(),
+
+                init() { if (this.config.entities.length) this.select(this.config.entities[0]); },
+
+                async select(entity) {
+                    this.selected = entity;
+                    this.offset = 0;
+                    this.editing = false;
+                    this.options = {};
+                    this.labels = {};
+                    this.lookupsReady = this.loadLookups();
+                    await Promise.all([this.load(), this.lookupsReady]);
+                },
+
+                /** Load every relation column's options: the same controller the business dropdowns use.
+                 *  A failing lookup degrades to the raw id - never to a broken page. */
+                async loadLookups() {
+                    const relations = (this.selected.properties || []).filter(p => p.lookup);
+                    await Promise.all(relations.map(async (p) => {
+                        try {
+                            const res = await fetch(p.lookup.url + '?$limit=1000&$offset=0',
+                                { credentials: 'same-origin', headers: { 'Accept': 'application/json' } });
+                            if (!res.ok) return;
+                            const rows = await res.json();
+                            const map = {};
+                            const list = rows.map(r => {
+                                const value = r[p.lookup.key];
+                                const text = r[p.lookup.label] != null ? String(r[p.lookup.label]) : String(value);
+                                map[String(value)] = text;
+                                return { value: value, text: text };
+                            });
+                            this.options[p.name] = list;
+                            this.labels[p.name] = map;
+                        } catch (e) { /* raw id stays the fallback */ }
+                    }));
+                },
+
+                /** Table rendering: a relation shows "Label (id)" when resolvable, the raw id otherwise -
+                 *  an administrator needs to see the actual foreign key, not only its label. */
+                /**
+                 * A temporal column arrives as the JSON array the Java serializer emits
+                 * ([y,m,d] / [y,m,d,h,mi,s]). Render it as ISO for BOTH the table and the editor -
+                 * "2025,7,6" in an input is not something an administrator can correct.
+                 */
+                temporal(value) {
+                    if (!Array.isArray(value) || value.length < 3 || !value.every(n => typeof n === 'number')) return null;
+                    const pad = (n) => String(n).padStart(2, '0');
+                    const date = value[0] + '-' + pad(value[1]) + '-' + pad(value[2]);
+                    if (value.length >= 6) return date + ' ' + pad(value[3]) + ':' + pad(value[4]) + ':' + pad(value[5]);
+                    return value.length === 5 ? date + ' ' + pad(value[3]) + ':' + pad(value[4]) : date;
+                },
+
+                display(property, value) {
+                    if (value === null || value === undefined) return '';
+                    const map = this.labels[property.name];
+                    const label = map && map[String(value)];
+                    if (label) return label + ' (' + value + ')';
+                    return this.temporal(value) || String(value);
+                },
+
+                // The REST error body carries the reason (spring.web.error.include-message). It is
+                // quoted only when the response is a REFUSAL - a 400/409 sentence authored for the
+                // person who pressed the button - through the same shared gate every other generated
+                // surface routes through (#7151, #7263): a 500 carries the raw exception text, and on
+                // the administration surface too that belongs in the server log, not in the banner.
+                // The developer-facing text still goes to the console, one keystroke away.
+                async apiError(res) {
+                    let reason = '';
+                    try {
+                        const body = await res.json();
+                        if (body) reason = String(body.message || body.error || '');
+                    } catch (e) { /* no JSON body */ }
+                    if (reason) console.error('[admin] HTTP ' + res.status + ': ' + reason);
+                    const err = new Error(App.services.apiErrors.refusalMessageFor(
+                        { httpStatus: res.status, errorMessage: reason },
+                        'HTTP ' + res.status + ' - the server log has the reason.'));
+                    err.shown = true;
+                    return err;
+                },
+
+                // What the banner shows for a caught failure: the text apiError() already cleared, else
+                // the neutral fallback - a transport failure's own message is developer-facing too.
+                banner(e, fallback) {
+                    if (e && e.shown) return e.message;
+                    console.error('[admin]', e);
+                    return fallback;
+                },
+
+                async load() {
+                    if (!this.selected) return;
+                    this.error = '';
+                    try {
+                        // The generated controller answers {"count": n}.
+                        const count = await fetch(this.selected.api + '/count',
+                            { credentials: 'same-origin', headers: { 'Accept': 'application/json' } });
+                        this.total = count.ok ? ((await count.json()).count || 0) : 0;
+                        // $limit/$offset are the generated controller's paging parameters.
+                        const res = await fetch(this.selected.api + '?$limit=' + this.limit + '&$offset=' + this.offset,
+                            { credentials: 'same-origin', headers: { 'Accept': 'application/json' } });
+                        if (!res.ok) throw await this.apiError(res);
+                        this.rows = await res.json();
+                    } catch (e) {
+                        this.rows = [];
+                        this.error = this.banner(e, 'Could not load the records.');
+                    }
+                },
+
+                page(direction) {
+                    this.offset = Math.max(0, this.offset + direction * this.limit);
+                    this.load();
+                },
+
+                rowKey(row) { return row[this.selected.pk]; },
+                cell(value) { return value === null || value === undefined ? '' : String(value); },
+
+                async startCreate() {
+                    this.isNew = true;
+                    this.draft = {};
+                    this.error = '';
+                    await this.lookupsReady;
+                    this.editing = true;
+                },
+
+                // A click on a row edits it - except one in the row's Delete cell, which acts on its own.
+                // The guard used to be @click.stop on the cell, which also kept the click from the
+                // document, where Harmonia closes an open menu (#8259).
+                rowClicked(event, row) {
+                    if (event.target.closest('[data-row-control]')) return;
+                    this.startEdit(row);
+                },
+
+                async startEdit(row) {
+                    this.isNew = false;
+                    this.draft = {};
+                    Object.keys(row).forEach(key => { this.draft[key] = this.temporal(row[key]) || row[key]; });
+                    this.error = '';
+                    await this.lookupsReady;
+                    this.editing = true;
+                    // The option elements carry String(value); re-assign each relation value AFTER the
+                    // options are rendered so the select finds its option and shows the label instead
+                    // of an empty box over a bound id.
+                    this.$nextTick(() => {
+                        (this.selected.properties || []).filter(p => p.lookup).forEach(p => {
+                            const value = this.draft[p.name];
+                            if (value === null || value === undefined || value === '') return;
+                            this.draft[p.name] = '';
+                            this.$nextTick(() => { this.draft[p.name] = String(value); });
+                        });
+                    });
+                },
+
+                cancel() { this.editing = false; this.draft = {}; this.error = ''; },
+
+                async save() {
+                    this.saving = true;
+                    this.error = '';
+                    try {
+                        const payload = {};
+                        for (const p of this.selected.properties) {
+                            if (this.isNew && p.pk) continue;
+                            let v = this.draft[p.name];
+                            if (v === '' || v === undefined) v = null;
+                            // A relation is bound as the option's string value; send the id as the
+                            // number the API declares.
+                            if (v !== null && p.lookup && /^-?\d+$/.test(String(v))) v = Number(v);
+                            payload[p.name] = v;
+                        }
+                        const id = this.draft[this.selected.pk];
+                        const res = await fetch(this.isNew ? this.selected.api : this.selected.api + '/' + encodeURIComponent(id), {
+                            method: this.isNew ? 'POST' : 'PUT',
+                            credentials: 'same-origin',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (!res.ok) throw await this.apiError(res);
+                        this.editing = false;
+                        await this.load();
+                    } catch (e) {
+                        this.error = this.banner(e, 'Could not save the record.');
+                    } finally {
+                        this.saving = false;
+                    }
+                },
+
+                async remove(row) {
+                    if (!window.confirm('Delete ' + this.selected.name + ' ' + row[this.selected.pk] + '?')) return;
+                    this.error = '';
+                    try {
+                        const res = await fetch(this.selected.api + '/' + encodeURIComponent(row[this.selected.pk]), {
+                            method: 'DELETE', credentials: 'same-origin'
+                        });
+                        if (!res.ok && res.status !== 204) throw await this.apiError(res);
+                        await this.load();
+                    } catch (e) {
+                        this.error = this.banner(e, 'Could not delete the record.');
+                    }
+                }
+            }));
+        });
+    </script>
+    <script defer src="/webjars/alpinejs/dist/cdn.min.js"></script>
+    <script src="/webjars/codbex__harmonia/dist/harmonia.min.js"></script>
+    <script src="/webjars/lucide/dist/umd/lucide.min.js"></script>
+    <script src="/webjars/codbex__harmonia/dist/harmonia-lucide.min.js"></script>
+</body>
+</html>

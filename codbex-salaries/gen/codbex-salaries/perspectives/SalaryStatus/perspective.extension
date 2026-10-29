@@ -1,0 +1,6 @@
+{
+    "module": "codbex-salaries/gen/codbex-salaries/perspectives/SalaryStatus/perspective.json",
+    "extensionPoint": "application-perspectives",
+    "description": "codbex-salaries - Perspective - SalaryStatus",
+    "role": "codbex-salaries.Settings.SalaryStatusReadOnly,codbex-salaries.Settings.SalaryStatusFullAccess"
+}

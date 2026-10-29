@@ -1,0 +1,25 @@
+package gen.codbex_salaries.data.entities;
+
+import org.eclipse.dirigible.sdk.db.Column;
+import org.eclipse.dirigible.sdk.db.CreatedAt;
+import org.eclipse.dirigible.sdk.db.CreatedBy;
+import org.eclipse.dirigible.sdk.platform.Documentation;
+import org.eclipse.dirigible.sdk.db.Entity;
+import org.eclipse.dirigible.sdk.db.GeneratedValue;
+import org.eclipse.dirigible.sdk.db.GenerationType;
+import org.eclipse.dirigible.sdk.db.Id;
+import org.eclipse.dirigible.sdk.db.Table;
+import org.eclipse.dirigible.sdk.db.UpdatedAt;
+import org.eclipse.dirigible.sdk.db.UpdatedBy;
+
+@Entity(name = "codbex_salaries_SalaryItemDirectionEntity")
+@Table(name = "CODBEX_SALARYITEMDIRECTION")
+@Documentation("SalaryItemDirection entity mapping")
+public class SalaryItemDirectionEntity {
+
+    @Id
+    @Column(name = "SALARYITEMDIRECTION_DIRECTION")
+    @Documentation("Direction")
+    public Integer Direction;
+
+}

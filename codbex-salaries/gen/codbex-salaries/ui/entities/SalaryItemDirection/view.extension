@@ -1,6 +1,0 @@
-{
-    "module": "codbex-salaries/gen/codbex-salaries/ui/entities/SalaryItemDirection/view.js",
-    "extensionPoint": "codbex-salaries-view",
-    "description": "codbex-salaries - Application View",
-    "role": "codbex-salaries.entities.SalaryItemDirectionReadOnly,codbex-salaries.entities.SalaryItemDirectionFullAccess"
-}

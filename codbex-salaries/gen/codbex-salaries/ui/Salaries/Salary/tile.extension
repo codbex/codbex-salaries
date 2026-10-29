@@ -1,6 +1,0 @@
-{
-    "module": "codbex-salaries/gen/codbex-salaries/ui/Salaries/Salary/tile.js",
-    "extensionPoint": "codbex-salaries-tile",
-    "description": "codbex-salaries - Application Tile",
-    "role": "codbex-salaries.Salaries.SalaryReadOnly,codbex-salaries.Salaries.SalaryFullAccess"
-}

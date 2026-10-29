@@ -1,0 +1,7 @@
+{
+    "id": "salaries-navigation",
+    "label": "Salaries",
+    "group": "salaries",
+    "order": 100,
+    "link": "/services/web/codbex-salaries/gen/codbex-salaries/index.html"
+}
